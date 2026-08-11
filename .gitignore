@@ -1,0 +1,14 @@
+.DS_Store
+.env
+*.env
+*.db
+*.db-wal
+*.db-shm
+__pycache__/
+*.pyc
+提交包/
+scripts/
+design-style-reference-SKILL.md
+read-image-SKILL.md
+.codex/
+.agents/

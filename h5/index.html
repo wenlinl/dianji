@@ -1,0 +1,1177 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#9A3B1E">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>惦记 · 千里之外，也在身边</title>
+<style>
+:root{--bg:#F9F8F6;--surface:#FFFEFB;--ink:#1C1C1C;--muted:#6E6A63;--border:#E4E0D8;--primary:#9A3B1E;--primary-ink:#FFFDF7;--soft:#F3F0E9;--good:#4E7A58;--good-ink:#fff;--good-soft:#EDF2EB;--warn:#8A5A14;--warn-soft:#F7F0E0;--fs:clamp(17px,3.6vw,21px);--lh:1.7;--serif:Georgia,'Songti SC','Noto Serif SC',serif}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{overflow-x:hidden}
+body{font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--ink);font-size:var(--fs);line-height:var(--lh)}
+body.big{--fs:23px}
+body.contrast{--bg:#000;--surface:#000;--ink:#fff;--muted:#ffd9a0;--border:#fff;--primary:#ffd400;--primary-ink:#000;--soft:#1a1a1a;--good:#00c853;--good-ink:#000;--good-soft:#002200;--warn:#ffb300;--warn-soft:#332800}
+body.contrast .btn{border-color:#fff;background:#000;color:#fff}
+body.contrast .btn.primary{background:#ffd400;color:#000;border-color:#ffd400}
+body.contrast .btn.good{background:#00c853;color:#000;border-color:#00c853}
+body.contrast .card,body.contrast .opt,body.contrast .bubble,body.contrast .todo,body.contrast .req-card{background:#111;border-color:#fff}
+body.contrast .chip{background:#111;color:#fff;border-color:#fff}
+.shell{max-width:520px;margin:0 auto;background:var(--surface);min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;border-left:1px solid var(--border);border-right:1px solid var(--border);padding-bottom:env(safe-area-inset-bottom)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:14px 16px 12px;border-bottom:1px solid var(--border)}
+.brand{font-family:var(--serif);font-size:24px;letter-spacing:3px}
+.top-right{display:flex;align-items:center;gap:8px}
+.ident{background:var(--soft);border:1px solid var(--border);border-radius:8px;padding:7px 12px;font-size:15px;color:var(--muted);cursor:pointer;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.iconbtn{width:44px;height:44px;border-radius:10px;border:1px solid var(--border);background:var(--surface);font-size:22px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;color:var(--ink)}
+main{flex:1;padding:18px;display:flex;flex-direction:column;gap:16px}
+.screen{display:none;flex-direction:column;gap:16px}
+.screen.active{display:flex}
+h2{font-family:var(--serif);font-size:clamp(23px,5vw,29px);font-weight:500;letter-spacing:1px;line-height:1.4;overflow-wrap:break-word}
+.sub{color:var(--muted);font-size:clamp(15px,3vw,17px);line-height:1.6;overflow-wrap:break-word}
+.card{background:var(--soft);border:1px solid var(--border);border-radius:12px;padding:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:var(--ink);padding:14px 16px;font-size:var(--fs);font-weight:500;cursor:pointer;text-decoration:none;min-height:54px;line-height:1.4;white-space:normal;text-align:center;overflow-wrap:break-word}
+.btn.primary{background:var(--primary);color:var(--primary-ink);border-color:var(--primary)}
+.btn.ghost{background:transparent}
+.btn.good{background:var(--good);color:var(--good-ink);border-color:var(--good)}
+.btn.block{width:100%}
+.btn.small{padding:10px 14px;font-size:16px;min-height:44px}
+.btn:disabled{opacity:.5;cursor:default}
+.help{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:var(--primary);color:var(--primary-ink);border:none;border-radius:18px;min-height:clamp(180px,26vh,240px);font-size:clamp(34px,8vw,42px);font-weight:500;cursor:pointer;font-family:var(--serif);letter-spacing:3px;text-align:center;padding:16px}
+.help span{font-size:19px;font-weight:400;opacity:.92}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:4px;border-radius:6px;padding:5px 12px;font-size:15px;background:var(--soft);color:var(--muted);border:1px solid var(--border)}
+.chip.warn{background:var(--warn-soft);color:var(--warn);border-color:transparent}
+.chip.good{background:var(--good-soft);color:var(--good);border-color:transparent}
+.chip.overdue{background:#F7E0DE;color:#B3261E;border-color:transparent}
+.badge{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;border-radius:11px;background:#B3261E;color:#fff;font-size:13px;padding:0 6px;margin-left:6px;font-weight:600}
+.alert-card{display:flex;align-items:center;gap:12px;background:var(--warn-soft);border:1px solid var(--border);border-radius:12px;padding:14px 16px;cursor:pointer}
+.alert-card b{flex:1}
+.opt{display:flex;align-items:center;gap:16px;background:var(--soft);border:1px solid var(--border);border-radius:14px;padding:20px;cursor:pointer;text-align:left;font-size:var(--fs);color:inherit;min-height:84px}
+.opt b{font-size:clamp(22px,5vw,28px);font-family:var(--serif);font-weight:500;overflow-wrap:break-word}
+.opt span{font-size:16px;color:var(--muted)}
+.step-status{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 18px;font-size:18px;align-self:flex-start}
+.dot{width:12px;height:12px;border-radius:50%;background:var(--primary);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.ai{background:var(--soft);border:1px solid var(--border);border-radius:12px;padding:20px}
+.ai p{font-family:var(--serif);font-size:clamp(26px,6vw,32px);line-height:1.6;margin-bottom:14px;overflow-wrap:break-word}
+.ai .note{font-size:17px;color:var(--muted)}
+.step-chip{display:inline-block;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:7px 16px;font-size:16px;color:var(--muted);align-self:flex-start}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.textarea,.input{width:100%;border:1px solid var(--border);border-radius:12px;padding:14px;font-size:clamp(18px,4vw,20px);background:var(--surface);color:var(--ink);font-family:inherit;line-height:1.6;overflow-wrap:break-word}
+textarea.textarea{min-height:110px}
+.preview{width:100%;border-radius:12px;border:1px solid var(--border);object-fit:cover;max-height:clamp(200px,45vh,320px);background:var(--soft)}
+.thumb{width:150px;border-radius:10px;border:1px solid var(--border);margin-top:10px}
+.req-card{cursor:pointer;background:var(--soft);border:1px solid var(--border);border-radius:12px;padding:16px}
+.bubble{background:var(--soft);border:1px solid var(--border);border-radius:12px;padding:12px 15px;font-size:18px;line-height:1.6;margin-top:10px}
+.bubble.ai{background:var(--surface)}
+.meta{color:var(--muted);font-size:14px;margin-top:6px}
+.big-icon{display:flex;align-items:center;justify-content:center;width:96px;height:96px;border-radius:50%;background:var(--good-soft);font-size:44px;margin:12px auto 6px}
+.center{text-align:center}
+.todo{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--soft);border:1px solid var(--border);border-radius:12px;padding:16px;font-size:clamp(18px,4vw,21px);line-height:1.6;overflow-wrap:break-word}
+.todo.done{opacity:.55}
+.memo{background:var(--soft);border:1px solid var(--border);border-radius:12px;padding:16px;cursor:pointer}
+.memo .val{font-family:var(--serif);font-size:clamp(21px,4.5vw,25px);color:var(--primary);word-break:break-all;overflow-wrap:anywhere}
+.hint{color:var(--muted);font-size:16px;text-align:center}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--surface);border-radius:10px;padding:12px 20px;font-size:17px;z-index:9;display:none;box-shadow:0 8px 24px rgba(0,0,0,.14);max-width:88vw;text-align:center}
+.rec{width:100%;min-height:64px;border-radius:12px;background:var(--primary);color:var(--primary-ink);border:none;font-size:22px;font-weight:600;cursor:pointer}
+.rec.recording{background:#B3261E;animation:pulse 1.2s infinite}
+.demo{background:var(--soft);border:1px dashed var(--border);border-radius:12px;padding:12px 14px;font-size:15px;color:var(--muted);line-height:1.7}
+.dialog{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;z-index:20;padding:24px}
+.dialog-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;max-width:430px;width:100%;display:flex;flex-direction:column;gap:14px}
+.avatar{display:inline-flex;width:36px;height:36px;border-radius:50%;color:#fff;align-items:center;justify-content:center;font-size:17px;margin-right:8px;flex:none}
+.bottom-nav{display:none;position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:100%;max-width:560px;background:var(--surface);border-top:1px solid var(--border);padding:6px max(8px,env(safe-area-inset-right)) calc(6px + env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left));justify-content:space-around;z-index:8}
+body.child-mode #bottom-nav{display:flex}
+body.child-mode .shell{padding-bottom:80px}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;color:var(--muted);font-size:20px;padding:6px 0;cursor:pointer;font-family:inherit}
+.nav-item span{font-size:12px;line-height:1.3}
+.nav-item.active{color:var(--elder-accent,var(--primary));font-weight:600}
+.elder-nav .nav-item{font-size:24px;padding:8px 0}
+.elder-nav .nav-item span{font-size:16px;font-weight:600;letter-spacing:1px}
+body.elder-mode .shell{padding-bottom:84px}
+@media (max-width:380px){main{padding:12px 14px}.top{padding:12px 12px 10px}.brand{font-size:21px}.ident{font-size:13px;max-width:110px}.help{letter-spacing:1px}.actions{gap:8px}.btn.small{font-size:14px;padding:9px 10px}}
+@media (min-width:700px){.shell{margin:16px auto 32px;border-radius:16px;min-height:calc(100dvh - 48px);box-shadow:0 10px 40px rgba(0,0,0,.06)}.bottom-nav{border-radius:16px 16px 0 0;border:1px solid var(--border);border-bottom:none}}
+@media (min-width:900px){.shell{max-width:640px}}
+@media (max-height:520px) and (orientation:landscape){.shell{min-height:100dvh}.help{min-height:120px}.big-icon{width:60px;height:60px;font-size:30px}.top{padding:8px 12px}.bottom-nav{padding-top:4px;padding-bottom:4px}}
+@media (prefers-color-scheme:dark){:root{--bg:#161310;--surface:#211d18;--ink:#F1EFE9;--muted:#A8A298;--border:#38332C;--soft:#2E2921;--good-soft:#222E25;--warn-soft:#332B18}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="top">
+    <span class="brand">惦记</span>
+    <div class="top-right" id="top-right" style="visibility:hidden">
+      <button class="iconbtn" onclick="show('settings')" title="设置">⚙️</button>
+      <span class="ident" id="ident-btn">未登录</span>
+    </div>
+  </div>
+  <main>
+    <div class="row" id="elder-switch" style="display:none"></div>
+
+    <!-- 登录 -->
+    <section class="screen active" id="sc-login">
+      <h2>惦记 · 千里之外，也在身边</h2>
+      <p class="sub">子女远程帮长辈用手机，吃药办事都提醒</p>
+      <div class="card">
+        <label class="sub">账号</label>
+        <input class="input" id="login-user" placeholder="账号" style="margin:6px 0 14px" autocomplete="username">
+        <label class="sub">密码</label>
+        <input class="input" id="login-pass" type="password" placeholder="密码" style="margin:6px 0 18px" autocomplete="current-password">
+        <button class="btn primary block" onclick="doLogin()">进入惦记</button>
+      </div>
+      <div class="demo">
+        演示账号：<br>老人端 laoren / 123456（李建国·外公）、laopo / 123456（王桂兰·外婆）<br>子女端 zinu / 123456（李薇·女儿）、sunnv / 123456（李小雅·孙女）
+      </div>
+    </section>
+
+    <!-- 老人端 -->
+    <section class="screen" id="sc-elder-home">
+      <div class="alert-card" id="elder-alert" style="display:none" onclick="openElderAlert()">
+        <span style="font-size:26px">💬</span>
+        <b id="elder-alert-text">家里人回复了你</b>
+        <span class="chip good">点这里看</span>
+      </div>
+      <button class="help" onclick="show('elder-method')">我卡住了<span>按一下，直接说话或拍照</span></button>
+      <button class="todo" onclick="goReminders()"><span>🔔 今天的事</span><span class="sub" id="rem-count">…</span></button>
+      <button class="todo" onclick="goMemos()"><span>📒 重要信息</span><span class="sub">WiFi 密码 / 社区电话</span></button>
+      <button class="todo" onclick="callFamily()"><span>📞 打电话给家里人</span><span class="sub">有急事直接打</span></button>
+      <p class="hint">卡住了？按大按钮，说一声就行</p>
+    </section>
+    <section class="screen" id="sc-elder-method">
+      <h2>你想怎么问？</h2>
+      <button class="opt" onclick="goVoice()"><span><b>🎤 语音说出问题</b><br><span>说话 / 打字都行</span></span></button>
+      <button class="opt" onclick="pickImage('screenshot')"><span><b>🖼️ 上传截图 / 拍照</b><br><span>先截个图，再选这张图</span></span></button>
+      <button class="opt" onclick="pickImage('camera')"><span><b>📷 对着东西问</b><br><span>打开摄像头，对准看不懂的东西</span></span></button>
+      <button class="btn ghost" onclick="show('elder-home')">返回首页</button>
+    </section>
+    <section class="screen" id="sc-elder-voice">
+      <h2>说说你遇到了什么</h2>
+      <textarea class="textarea" id="voice-text" placeholder="比如：我想把朋友发的那篇文章转到家族群，但找不到转发在哪"></textarea>
+      <button class="rec" id="mic-btn" onclick="startMic()">🎤 点一下开始说话</button>
+      <p class="hint" id="mic-hint">点一下开始录音，说完再点一下结束</p>
+      <button class="btn primary block" onclick="askAI('voice')">让 AI 看看 →</button>
+      <button class="btn ghost" onclick="show('elder-method')">返回</button>
+    </section>
+    <section class="screen" id="sc-elder-upload">
+      <h2 id="upload-title">上传当前界面的截图</h2>
+      <p class="sub">选好后点"让 AI 看看"</p>
+      <img class="preview" id="img-preview" style="display:none" alt="预览">
+      <input type="file" id="file-input" accept="image/*" style="display:none">
+      <button class="btn block" onclick="document.getElementById('file-input').click()">选择图片</button>
+      <button class="btn primary block" id="ask-img-btn" style="display:none" onclick="askAI('image')">让 AI 看看 →</button>
+      <button class="btn ghost" onclick="show('elder-method')">返回</button>
+    </section>
+    <section class="screen" id="sc-elder-thinking">
+      <div class="step-status"><span class="dot"></span>AI 正在看你的截图 / 听你的问题…</div>
+      <div class="card"><p class="sub">一般几秒到半分钟，请稍等</p></div>
+    </section>
+    <section class="screen" id="sc-elder-steps">
+      <div class="step-status"><span class="dot"></span><span>AI 正在看着你，每步都会念给你听</span></div>
+      <div id="risk-box" style="display:none"></div>
+      <span class="step-chip" id="step-chip">第 1 步</span>
+      <div class="ai"><p id="step-text">…</p><p class="note">照着做就行，做完点"这步好了"</p></div>
+      <div class="actions">
+        <button class="btn" onclick="speakNow()">🔊 再讲一遍</button>
+        <button class="btn primary" id="step-ok" onclick="stepOk()">这步好了</button>
+        <button class="btn ghost" onclick="showForward()">没搞定</button>
+      </div>
+      <button class="btn block" id="cmd-mic" onclick="cmdMic()">🎤 说话指挥</button>
+      <p class="hint">说：再讲一遍 / 好了 / 卡住了 / 叫家里人</p>
+      <button class="btn block" onclick="showForward()">👨‍👩‍👧 让家里人帮我看看</button>
+      <button class="btn block" onclick="askMoreDetail()">🔍 这一步再细讲</button>
+      <button class="btn block" onclick="callFamily()">📞 打电话给家里人</button>
+      <button class="btn ghost block" onclick="restartAsk()">🔄 换个问题 / 重新开始</button>
+    </section>
+    <section class="screen" id="sc-elder-forward">
+      <h2>叫家里人帮忙？</h2>
+      <p class="sub">会把刚才的对话和截图发给家里人。可以吗？</p>
+      <div class="card" id="forward-summary"></div>
+      <div class="card" id="forward-target"></div>
+      <button class="btn primary block" onclick="sendForward()">发送给家里人</button>
+      <button class="btn ghost block" onclick="show('elder-steps')">先不发了</button>
+    </section>
+    <section class="screen" id="sc-elder-sent">
+      <div class="big-icon">✓</div>
+      <h2 class="center" id="sent-title">已经告诉家里人啦</h2>
+      <p class="center sub" id="sent-sub">他们看到后会来找你</p>
+      <div class="center"><span class="chip warn" id="sent-chip">等待处理</span></div>
+      <div id="reply-box"></div>
+      <div id="sent-actions"></div>
+      <button class="btn primary block" onclick="show('elder-home')">回到首页</button>
+    </section>
+    <section class="screen" id="sc-elder-reminders">
+      <h2>今天的事</h2>
+      <div id="rem-list" style="display:flex;flex-direction:column;gap:12px"></div>
+    </section>
+    <section class="screen" id="sc-elder-memos">
+      <h2>重要信息</h2>
+      <p class="sub">点一下就能看到，还有声音</p>
+      <div id="memo-list" style="display:flex;flex-direction:column;gap:12px"></div>
+    </section>
+
+    <!-- 子女端 -->
+    <section class="screen" id="sc-child-home">
+      <h2>首页</h2>
+      <button class="opt" onclick="loadRequests();show('child-inbox')"><span><b>📥 收件箱<span class="badge" id="inbox-badge" style="display:none"></span></b><br><span id="home-inbox-sub">外公发来的求助</span></span></button>
+      <button class="opt" onclick="loadChildReminders();show('child-reminders')"><span><b>🔔 提醒</b><br><span>吃药 / 复诊 / 认证</span></span></button>
+      <button class="opt" onclick="loadChildMemos();show('child-memos')"><span><b>📒 备忘录</b><br><span>WiFi / 电话 / 卡号</span></span></button>
+      <button class="opt" onclick="loadChildTutorials();show('child-tutorials')"><span><b>📚 教程</b><br><span>外公问过的，沉淀成教程复用</span></span></button>
+    </section>
+    <section class="screen" id="sc-child-inbox">
+      <div class="row"><div><h2>收件箱<span class="badge" id="inbox-badge2" style="display:none"></span></h2><p class="sub" id="inbox-sub">外公发来的求助</p></div><button class="btn small ghost" onclick="loadRequests()">刷新</button></div>
+      <div id="req-list" style="display:flex;flex-direction:column;gap:12px"></div>
+    </section>
+    <section class="screen" id="sc-child-detail">
+      <button class="btn ghost" onclick="show('child-inbox')">← 收件箱</button>
+      <h2>外公的求助</h2>
+      <div id="detail-body"></div>
+      <div class="card">
+        <p class="sub">回复外公（会在他页面显示并念出）</p>
+        <textarea class="textarea" id="reply-text" placeholder="别急，点屏幕最上面一行，最右边那个"></textarea>
+        <button class="btn primary block" style="margin-top:10px" onclick="sendReply()">发送回复</button>
+        <button class="btn good block" style="margin-top:8px" onclick="markDone()">标记已解决</button>
+      </div>
+    </section>
+    <section class="screen" id="sc-child-reminders">
+      <div class="row"><div><h2 id="rem-title">给外公的提醒</h2><p class="sub" id="rem-sub">到点后在他页面显示</p></div></div>
+      <div class="card">
+        <input class="input" id="rem-title" placeholder="提醒内容，如：吃降压药" style="margin-bottom:10px">
+        <input class="input" id="rem-due" placeholder="时间，如：每天 8:30 / 8月15日 9:00" style="margin-bottom:10px">
+        <div class="actions">
+          <button class="btn small ghost" onclick="fillDue('每天 8:30')">每天 8:30</button>
+          <button class="btn small ghost" onclick="fillDue('每周一 8:30')">每周一 8:30</button>
+          <button class="btn small ghost" onclick="fillDue('每月15日')">每月15日</button>
+        </div>
+        <button class="btn primary block" id="rem-save-btn" onclick="saveReminder()">添加提醒</button>
+        <button class="btn ghost block" id="rem-cancel-btn" style="display:none;margin-top:8px" onclick="cancelReminderEdit()">取消编辑</button>
+      </div>
+      <div class="demo" id="rem-stats" style="display:none"></div>
+      <div id="rem-manage" style="display:flex;flex-direction:column;gap:12px"></div>
+    </section>
+    <section class="screen" id="sc-child-memos">
+      <div class="row"><div><h2 id="memo-title">家庭备忘录</h2><p class="sub" id="memo-sub">重要信息存这里</p></div></div>
+      <div class="card">
+        <input class="input" id="memo-label" placeholder="名称，如：家里 WiFi 密码" style="margin-bottom:10px">
+        <input class="input" id="memo-value" placeholder="内容，如：dianjia2026" style="margin-bottom:10px">
+        <button class="btn primary block" onclick="addMemo()">添加信息</button>
+      </div>
+      <div id="memo-manage" style="display:flex;flex-direction:column;gap:12px"></div>
+    </section>
+    <section class="screen" id="sc-child-tutorials">
+      <div class="row"><div><h2 id="tut-title">教程沉淀</h2><p class="sub" id="tut-sub">外公再问同类问题，自动复用</p></div></div>
+      <div class="card">
+        <input class="input" id="tut-title" placeholder="教程名，如：转发微信文章到家族群" style="margin-bottom:10px">
+        <textarea class="textarea" id="tut-steps" placeholder="步骤，每行一步"></textarea>
+        <button class="btn primary block" style="margin-top:10px" onclick="addTutorial()">添加教程</button>
+      </div>
+      <div id="tut-list" style="display:flex;flex-direction:column;gap:12px"></div>
+    </section>
+
+    <!-- 设置 -->
+    <section class="screen" id="sc-settings">
+      <h2>设置</h2>
+      <div class="card">
+        <label class="sub">我的昵称</label>
+        <input class="input" id="prof-name" placeholder="昵称" style="margin:6px 0 10px">
+        <label class="sub">手机号</label>
+        <input class="input" id="prof-phone" placeholder="手机号" style="margin:6px 0 10px">
+        <button class="btn primary block" onclick="saveProfile()">保存资料</button>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column;gap:14px">
+        <label class="row"><span>🔍 大字模式</span><input type="checkbox" id="set-big" onchange="toggleBig()" style="width:26px;height:26px"></label>
+        <label class="row"><span>🌗 高对比</span><input type="checkbox" id="set-contrast" onchange="toggleContrast()" style="width:26px;height:26px"></label>
+        <label class="row"><span>🔊 自动朗读</span><input type="checkbox" id="set-speak" onchange="toggleSpeak()" style="width:26px;height:26px"></label>
+        <button class="btn block" onclick="testSpeak()">🔊 测试声音（点一下听效果）</button>
+      </div>
+      <div class="demo" id="account-info"></div>
+      <button class="btn ghost block" id="logout-btn" onclick="doLogout()">退出登录</button>
+      <button class="btn ghost block" onclick="backHome()">返回</button>
+    </section>
+
+  </main>
+  <nav class="bottom-nav" id="bottom-nav">
+    <button class="nav-item" data-tab="inbox" onclick="goChildTab('inbox')"><span>📥</span><span>收件箱</span></button>
+    <button class="nav-item" data-tab="reminders" onclick="goChildTab('reminders')"><span>🔔</span><span>提醒</span></button>
+    <button class="nav-item" data-tab="memos" onclick="goChildTab('memos')"><span>📒</span><span>备忘录</span></button>
+    <button class="nav-item" data-tab="tutorials" onclick="goChildTab('tutorials')"><span>📚</span><span>教程</span></button>
+  </nav>
+  <nav class="bottom-nav elder-nav" id="elder-nav">
+    <button class="nav-item" data-tab="elder-home" onclick="show('elder-home');loadRemCount()"><span>🏠</span><span>首页</span></button>
+    <button class="nav-item" data-tab="elder-reminders" onclick="goReminders()"><span>🔔</span><span>今天的事</span></button>
+    <button class="nav-item" data-tab="elder-memos" onclick="goMemos()"><span>📒</span><span>重要信息</span></button>
+    <button class="nav-item" data-tab="settings" onclick="show('settings')"><span>⚙️</span><span>设置</span></button>
+  </nav>
+</div>
+<div class="toast" id="toast"></div>
+<div class="dialog" id="dialog">
+  <div class="dialog-card">
+    <h2 id="dialog-title"></h2>
+    <p id="dialog-text" style="font-size:18px;line-height:1.7"></p>
+    <div id="dialog-actions" style="display:flex;flex-direction:column;gap:10px"></div>
+  </div>
+</div>
+<audio id="tts-audio" preload="none"></audio>
+<script>
+var state={token:null,user:null,image:null,steps:[],stepIdx:0,curId:null,mode:'voice',autoSpeak:true,fromTutorial:false,sentTimer:null,pollTimer:null,childSeenMax:0,elderSeen:null,alertReqId:null,remGreeted:false,editRemId:null,audioCtx:null,curPhone:'',risk:null,elders:[],selElder:null,forwardTarget:null};
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function enc(s){return encodeURIComponent(String(s==null?'':s)).replace(/'/g,'%27');}
+function speakManualEnc(t){speakManual(decodeURIComponent(t));}
+function beep(){
+  try{
+    var ctx=state.audioCtx||(state.audioCtx=new (window.AudioContext||window.webkitAudioContext)());
+    var o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);
+    o.frequency.value=880;g.gain.setValueAtTime(0.12,ctx.currentTime);o.start();o.stop(ctx.currentTime+0.22);
+    var o2=ctx.createOscillator(),g2=ctx.createGain();o2.connect(g2);g2.connect(ctx.destination);
+    o2.frequency.value=1320;g2.gain.setValueAtTime(0.12,ctx.currentTime+0.26);o2.start(ctx.currentTime+0.26);o2.stop(ctx.currentTime+0.5);
+  }catch(e){}
+}
+function toast(msg){var t=$('toast');t.textContent=msg;t.style.display='block';clearTimeout(t._h);t._h=setTimeout(function(){t.style.display='none';},2600);}
+function show(name){
+  if(name!=='elder-sent'){clearInterval(state.sentTimer);}
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active');});
+  $('sc-'+name).classList.add('active');window.scrollTo(0,0);
+  updateElderNav(name);
+}
+function backHome(){
+  if(state.user&&state.user.role==='elder'){show('elder-home');}
+  else if(state.user){show('child-home');}
+  else{show('login');}
+}
+function api(path,opts){
+  opts=opts||{};
+  var headers=opts.headers||{};
+  headers['Content-Type']='application/json';
+  if(state.token){headers['Authorization']='Bearer '+state.token;}
+  var ctl=new AbortController();
+  var timer=setTimeout(function(){ctl.abort();},180000);
+  return fetch(path,Object.assign({},opts,{headers:headers,signal:ctl.signal}))
+    .then(function(r){clearTimeout(timer);return r.json().catch(function(){return {};}).then(function(d){
+      if(r.status===401){toast('登录已过期，请重新登录');showLogin();throw new Error('unauth');}
+      return d;});
+    })
+    .catch(function(e){clearTimeout(timer);throw e;});
+}
+
+/* ---------- 登录 / 退出 ---------- */
+function showLogin(){
+  clearInterval(state.sentTimer);clearInterval(state.pollTimer);
+  state.sentTimer=null;state.pollTimer=null;state.childSeenMax=0;state.elderSeen=null;state.alertReqId=null;state.remGreeted=false;
+  state.token=null;state.user=null;
+  document.body.classList.remove('child-mode');
+  document.body.classList.remove('elder-mode');
+  var sw=$('elder-switch');if(sw){sw.style.display='none';sw.innerHTML='';}
+  localStorage.removeItem('dianji_token');
+  $('ident-btn').textContent='未登录';
+  $('top-right').style.visibility='hidden';
+  $('elder-alert').style.display='none';
+  setInboxBadge(0);
+  show('login');
+}
+function doLogin(){
+  var u=$('login-user').value.trim(),p=$('login-pass').value;
+  if(!u||!p){toast('请输入账号和密码');return;}
+  api('/api/login',{method:'POST',body:JSON.stringify({username:u,password:p})})
+    .then(function(d){
+      if(d.error){toast(d.error);return;}
+      state.token=d.token;state.user=d.user;
+      localStorage.setItem('dianji_token',d.token);
+      $('ident-btn').textContent=d.user.display_name;
+      $('top-right').style.visibility='visible';
+      $('account-info').textContent='当前账号：'+d.user.display_name+'（'+(d.user.role==='elder'?'老人端':'子女端')+'）';
+      toast('欢迎回来');
+      enterHome();
+    })
+    .catch(function(){toast('网络出错，请重试');});
+}
+function doLogout(){
+  api('/api/logout',{method:'POST',body:'{}'}).catch(function(){});
+  showLogin();
+}
+function enterHome(){
+  if(state.user.role==='elder'){
+    document.body.classList.remove('child-mode');
+    document.body.classList.add('elder-mode');
+    var sw=$('elder-switch');if(sw){sw.style.display='none';sw.innerHTML='';}
+    show('elder-home');loadRemCount();
+  }
+  else{document.body.classList.add('child-mode');show('child-home');setNav('');}
+  startPolling();
+  loadElderSwitch();
+  fillProfileForm();
+}
+function loadSaved(){
+  var t=localStorage.getItem('dianji_token');
+  if(t){state.token=t;api('/api/me').then(function(d){
+    if(d.user){state.user=d.user;$('ident-btn').textContent=d.user.display_name;$('top-right').style.visibility='visible';$('account-info').textContent='当前账号：'+d.user.display_name;enterHome();}
+    else{showLogin();}
+  }).catch(function(){showLogin();});
+  }else{showLogin();}
+}
+
+/* ---------- 适老化设置 ---------- */
+function loadPrefs(){
+  $('set-big').checked=localStorage.getItem('dianji_big')==='1';
+  $('set-contrast').checked=localStorage.getItem('dianji_contrast')==='1';
+  $('set-speak').checked=localStorage.getItem('dianji_speak')!=='0';
+  document.body.classList.toggle('big',$('set-big').checked);
+  document.body.classList.toggle('contrast',$('set-contrast').checked);
+  state.autoSpeak=$('set-speak').checked;
+}
+function toggleBig(){document.body.classList.toggle('big',$('set-big').checked);localStorage.setItem('dianji_big',$('set-big').checked?'1':'0');}
+function toggleContrast(){document.body.classList.toggle('contrast',$('set-contrast').checked);localStorage.setItem('dianji_contrast',$('set-contrast').checked?'1':'0');}
+function toggleSpeak(){state.autoSpeak=$('set-speak').checked;localStorage.setItem('dianji_speak',state.autoSpeak?'1':'0');}
+
+/* ---------- 实时通知（打开页面期间自动刷新） ---------- */
+function startPolling(){
+  clearInterval(state.pollTimer);
+  state.pollTimer=setInterval(pollAll,10000);
+  pollAll();
+}
+function pollAll(){
+  if(document.hidden||!state.user){return;}
+  if(state.user.role==='elder'){pollElder();}
+  else if(state.user.role==='child'){pollChild();}
+}
+function setInboxBadge(n){
+  var show=n>0;
+  $('inbox-badge').style.display=show?'inline-flex':'none';
+  $('inbox-badge2').style.display=show?'inline-flex':'none';
+  $('inbox-badge').textContent=n;
+  $('inbox-badge2').textContent=n;
+}
+function eldQ(){return state.selElder?('elder_id='+state.selElder):'';}
+function eldB(){return state.selElder?{elder_id:state.selElder}:{};}
+function loadElderSwitch(){
+  if(!state.user||state.user.role!=='child'){var sw=$('elder-switch');if(sw){sw.style.display='none';sw.innerHTML='';}return;}
+  api('/api/family').then(function(d){
+    state.elders=d.elders||[];
+    var saved=parseInt(localStorage.getItem('dianji_elder')||'0',10);
+    state.selElder=state.elders.some(function(e){return e.id===saved;})?saved:(state.elders[0]?state.elders[0].id:null);
+    var box=$('elder-switch');
+    if(!state.elders.length){box.style.display='none';box.innerHTML='';return;}
+    var html='<span class="sub">当前长辈：</span>';
+    html+=state.elders.map(function(e){
+      var on=e.id===state.selElder;
+      var st=elderStyle(e);
+      var style=on?('background:'+st.color+';color:#fff;border-color:'+st.color):'';
+      return '<button class="chip" style="'+style+'" onclick="switchElder('+e.id+')"><span class="avatar" style="background:'+st.color+'">'+st.short+'</span>'+esc(e.display_name)+'</button>';
+    }).join('');
+    box.innerHTML=html;
+    box.style.display='flex';
+    var cur=state.elders.find(function(e){return e.id===state.selElder;});
+    document.body.style.setProperty('--elder-accent',cur?elderStyle(cur).color:'#9A3B1E');
+    updateElderSubs();
+  }).catch(function(){});
+}
+function elderStyle(e){
+  var n=e.display_name||'';
+  if(n.indexOf('外婆')>=0||n.indexOf('奶奶')>=0){return {color:'#2E6E8E',short:'婆'};}
+  if(n.indexOf('外公')>=0||n.indexOf('爷爷')>=0){return {color:'#9A3B1E',short:'公'};}
+  return {color:'#6E6A63',short:(n||'长').slice(0,1)};
+}
+function updateElderSubs(){
+  var name=currentElderName();
+  var t1=$('home-inbox-sub');if(t1){t1.textContent=name+'发来的求助';}
+  var s1=$('inbox-sub');if(s1){s1.textContent=name+'发来的求助';}
+  var t2=$('rem-title');if(t2){t2.textContent='给'+name+'的提醒';}
+  var s2=$('rem-sub');if(s2){s2.textContent='到点后在他页面显示';}
+  var t3=$('memo-title');if(t3){t3.textContent=name+'的重要信息';}
+  var s3=$('memo-sub');if(s3){s3.textContent='WiFi / 电话 / 卡号，点开即看';}
+  var t4=$('tut-title');if(t4){t4.textContent=name+'的教程';}
+  var s4=$('tut-sub');if(s4){s4.textContent='再问同类问题，自动复用';}
+}
+function switchElder(id){
+  state.selElder=id;
+  localStorage.setItem('dianji_elder',id);
+  loadElderSwitch();
+  var active=document.querySelector('.screen.active');
+  if(active&&active.id==='sc-child-inbox'){loadRequests();}
+  else if(active&&active.id==='sc-child-reminders'){loadChildReminders();}
+  else if(active&&active.id==='sc-child-memos'){loadChildMemos();}
+  else if(active&&active.id==='sc-child-tutorials'){loadChildTutorials();}
+}
+function currentElderName(){
+  for(var i=0;i<state.elders.length;i++){if(state.elders[i].id===state.selElder){return state.elders[i].display_name;}}
+  return '长辈';
+}
+function goChildTab(tab){
+  var map={inbox:['child-inbox',loadRequests],reminders:['child-reminders',loadChildReminders],memos:['child-memos',loadChildMemos],tutorials:['child-tutorials',loadChildTutorials]};
+  var m=map[tab];
+  if(!m){return;}
+  m[1]();show(m[0]);setNav(tab);
+}
+function setNav(tab){
+  var items=document.querySelectorAll('.nav-item');
+  for(var i=0;i<items.length;i++){items[i].classList.toggle('active',items[i].getAttribute('data-tab')===tab);}
+}
+function updateElderNav(name){
+  var nav=$('elder-nav');
+  if(!nav){return;}
+  if(!state.user||state.user.role!=='elder'){
+    nav.style.display='none';
+    return;
+  }
+  var tabs=['elder-home','elder-reminders','elder-memos','settings'];
+  nav.style.display=tabs.indexOf(name)>=0?'flex':'none';
+  var items=nav.querySelectorAll('.nav-item');
+  for(var i=0;i<items.length;i++){items[i].classList.toggle('active',items[i].getAttribute('data-tab')===name);}
+}
+function fillProfileForm(){
+  if(state.user){
+    $('prof-name').value=state.user.display_name||'';
+    $('prof-phone').value=state.user.phone||'';
+  }
+}
+function saveProfile(){
+  var name=$('prof-name').value.trim(),phone=$('prof-phone').value.trim();
+  if(!name){toast('昵称不能为空');return;}
+  api('/api/profile',{method:'POST',body:JSON.stringify({display_name:name,phone:phone})}).then(function(d){
+    if(d.user){
+      state.user=d.user;
+      $('ident-btn').textContent=d.user.display_name;
+      $('account-info').textContent='当前账号：'+d.user.display_name+'（'+(d.user.role==='elder'?'老人端':'子女端')+'）';
+      toast('资料已保存');
+    }else{toast('保存失败');}
+  }).catch(function(){toast('保存失败');});
+}
+function pollChild(){
+  api('/api/requests?'+eldQ()).then(function(list){
+    if(!list||!list.length){setInboxBadge(0);return;}
+    var maxId=0,pending=0;
+    list.forEach(function(x){if(x.id>maxId){maxId=x.id;}if(x.status==='pending'||x.status==='accepted'){pending++;}});
+    setInboxBadge(pending);
+    if(state.childSeenMax>0&&maxId>state.childSeenMax){
+      var fresh=list.filter(function(x){return x.id>state.childSeenMax&&x.status!=='withdrawn';});
+      if(fresh.length){beep();toast('🔔 长辈发来了新的求助！');}
+    }
+    if(maxId>state.childSeenMax){state.childSeenMax=maxId;}
+  }).catch(function(){});
+}
+function pollElder(){
+  api('/api/requests').then(function(list){
+    if(!list||!list.length){return;}
+    var notable=list.filter(function(x){return x.status!=='withdrawn'&&(x.reply||x.status==='done'||x.status==='accepted');});
+    var active=(notable[0]||list[0]);
+    var key=active.id+'|'+active.status+'|'+(active.reply||'');
+    if(!state.elderSeen){state.elderSeen=key;return;}
+    if(key===state.elderSeen){return;}
+    state.elderSeen=key;
+    var txt='';
+    if(active.reply){txt='家里人回复了你：'+active.reply;}
+    else if(active.status==='accepted'){txt='家里人正在帮你弄，稍等一下';}
+    else if(active.status==='done'){txt='你太棒了，问题解决了';}
+    if(txt){
+      state.alertReqId=active.id;
+      $('elder-alert-text').textContent=txt;
+      $('elder-alert').style.display='flex';
+      toast(txt);
+      if(state.autoSpeak){speak(txt);}
+    }
+  }).catch(function(){});
+}
+function openElderAlert(){
+  if(state.alertReqId){state.curId=state.alertReqId;refreshSent();startSentPolling();}
+  $('elder-alert').style.display='none';
+  show('elder-sent');
+}
+
+/* ---------- 老人求助流程 ---------- */
+function goVoice(){state.mode='voice';show('elder-voice');}
+function pickImage(mode){
+  state.mode=mode;
+  $('upload-title').textContent=mode==='camera'?'对准看不懂的东西拍照':'上传当前界面的截图';
+  var inp=$('file-input');
+  if(mode==='camera'){inp.setAttribute('capture','environment');}else{inp.removeAttribute('capture');}
+  $('img-preview').style.display='none';$('ask-img-btn').style.display='none';
+  inp.onchange=function(){
+    var f=inp.files&&inp.files[0];if(!f){return;}
+    var r=new FileReader();
+    r.onload=function(){compressImage(r.result,function(small){
+      state.image=small;
+      var p=$('img-preview');p.src=small;p.style.display='block';
+      $('ask-img-btn').style.display='inline-flex';
+      toast('图片已选好，点下方让 AI 看看');
+    });};
+    r.readAsDataURL(f);
+  };
+  show('elder-upload');
+}
+function compressImage(dataUrl,cb){
+  var img=new Image();
+  img.onload=function(){
+    var max=1280,scale=Math.min(1,max/Math.max(img.width,img.height));
+    var w=Math.round(img.width*scale),h=Math.round(img.height*scale);
+    var c=document.createElement('canvas');c.width=w;c.height=h;
+    c.getContext('2d').drawImage(img,0,0,w,h);
+    cb(c.toDataURL('image/jpeg',0.78));
+  };
+  img.onerror=function(){cb(dataUrl);};
+  img.src=dataUrl;
+}
+var recState={rec:null,mode:'',chunks:[],cb:null,timer:null};
+function finishRec(txt){
+  clearTimeout(recState.timer);recState.timer=null;
+  recState.rec=null;recState.mode='';
+  var cb=recState.cb;recState.cb=null;
+  if(cb){cb(txt);}
+}
+function stopRec(abort,btn,label){
+  clearTimeout(recState.timer);recState.timer=null;
+  var rec=recState.rec;
+  recState.rec=null;recState.mode='';
+  if(rec){try{rec.stop();}catch(e){}}
+  if(abort){
+    var cb=recState.cb;recState.cb=null;
+    if(btn){btn.classList.remove('recording');btn.textContent=label;}
+    $('mic-hint').textContent='点一下开始录音，说完再点一下结束';
+    if(cb){cb('');}
+  }
+}
+function startMediaRecord(done){
+  navigator.mediaDevices.getUserMedia({audio:true}).then(function(stream){
+    var mime=MediaRecorder.isTypeSupported('audio/mp4')?'audio/mp4':'audio/webm';
+    var rec=new MediaRecorder(stream,{mimeType:mime});
+    recState.rec=rec;recState.mode='media';recState.chunks=[];recState.cb=done;
+    rec.ondataavailable=function(e){if(e.data&&e.data.size){recState.chunks.push(e.data);}};
+    rec.onstop=function(){
+      clearTimeout(recState.timer);recState.timer=null;
+      stream.getTracks().forEach(function(t){t.stop();});
+      var cb=recState.cb;recState.cb=null;
+      recState.rec=null;recState.mode='';
+      var blob=new Blob(recState.chunks,{type:mime});
+      var fr=new FileReader();
+      fr.onload=function(){
+        var b64=String(fr.result).split(',')[1];
+        api('/api/asr',{method:'POST',body:JSON.stringify({audio:b64,mime:mime})})
+          .then(function(d){
+            if(d.error){toast(d.error);}
+            else if(d.text){toast('已记下你说的话');}
+            if(cb){cb(d.text||'');}
+          })
+          .catch(function(){toast('识别失败，请重试');if(cb){cb('');}});
+      };
+      fr.readAsDataURL(blob);
+    };
+    rec.onerror=function(){
+      clearTimeout(recState.timer);recState.timer=null;
+      stream.getTracks().forEach(function(t){t.stop();});
+      var cb=recState.cb;recState.cb=null;
+      recState.rec=null;recState.mode='';
+      toast('录音出错，请重试');if(cb){cb('');}
+    };
+    rec.start();
+    recState.timer=setTimeout(function(){try{rec.stop();}catch(e){}},30000);
+  }).catch(function(){toast('麦克风权限没开，请允许后再试');done('');});
+}
+function recordOnce(done){
+  // 优先"录音→服务器识别"：国内网络最稳（浏览器自带识别依赖谷歌服务，经常连不上）
+  if(window.MediaRecorder&&navigator.mediaDevices&&navigator.mediaDevices.getUserMedia){
+    startMediaRecord(done);
+    return;
+  }
+  var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(SR){
+    try{
+      var rec=new SR();rec.lang='zh-CN';rec.interimResults=false;rec.maxAlternatives=1;
+      recState.rec=rec;recState.mode='sr';recState.cb=done;
+      rec.onresult=function(e){finishRec(e.results[0][0].transcript||'');};
+      rec.onerror=function(ev){
+        var err=ev&&ev.error;
+        toast(err==='not-allowed'?'麦克风权限没开，请允许后再试':(err==='no-speech'?'没听到声音，再试一次':'没听清，再试一次'));
+        finishRec('');
+      };
+      rec.onend=function(){
+        if(recState.rec===rec){recState.rec=null;recState.mode='';clearTimeout(recState.timer);recState.timer=null;}
+      };
+      rec.start();
+      recState.timer=setTimeout(function(){
+        if(recState.rec===rec){try{rec.stop();}catch(e){}}
+        toast('没听到声音，再试一次');
+        finishRec('');
+      },20000);
+      return;
+    }catch(e){recState.rec=null;recState.mode='';}
+  }
+  toast('当前环境不支持录音，请直接打字');done('');return;
+}
+function startMic(){
+  var btn=$('mic-btn');
+  if(recState.rec){
+    if(recState.mode==='media'){
+      btn.classList.remove('recording');
+      btn.textContent='🎤 正在识别…';
+      $('mic-hint').textContent='正在听懂你说的话，稍等…';
+      clearTimeout(recState.timer);recState.timer=null;
+      var rec=recState.rec;recState.rec=null;recState.mode='';
+      try{rec.stop();}catch(e){}
+      return;
+    }
+    stopRec(true,btn,'🎤 点一下开始说话');
+    return;
+  }
+  recordOnce(function(txt){
+    btn.classList.remove('recording');
+    btn.textContent='🎤 点一下开始说话';
+    $('mic-hint').textContent='点一下开始录音，说完再点一下结束';
+    if(txt){var v=$('voice-text');v.value=v.value?v.value+'\n'+txt:txt;toast('已记下你说的话');}
+  });
+  btn.classList.add('recording');
+  btn.textContent='🔴 正在听，说完点一下结束';
+  $('mic-hint').textContent='现在说话，说完再点一下这个按钮';
+}
+function cmdMic(){
+  var btn=$('cmd-mic');
+  if(recState.rec){
+    if(recState.mode==='media'){
+      btn.classList.remove('recording');
+      btn.textContent='🎤 正在听懂你说的…';
+      clearTimeout(recState.timer);recState.timer=null;
+      var rec=recState.rec;recState.rec=null;recState.mode='';
+      try{rec.stop();}catch(e){}
+      return;
+    }
+    stopRec(true,btn,'🎤 说话指挥');
+    return;
+  }
+  recordOnce(function(txt){
+    btn.classList.remove('recording');
+    btn.textContent='🎤 说话指挥';
+    $('mic-hint').textContent='点一下开始录音，说完再点一下结束';
+    if(txt){parseCommand(txt);}
+  });
+  btn.classList.add('recording');
+  btn.textContent='🔴 正在听，说完再点一下';
+}
+function parseCommand(txt){
+  if(txt.indexOf('再讲')>=0||txt.indexOf('再说')>=0){speakNow();toast('好的，再讲一遍');}
+  else if(txt.indexOf('下一步')>=0||txt.indexOf('好了')>=0||txt.indexOf('完成')>=0||txt.indexOf('做完')>=0){stepOk();}
+  else if(txt.indexOf('卡住')>=0||txt.indexOf('不会')>=0){showForward();}
+  else if(txt.indexOf('家里')>=0||txt.indexOf('家人')>=0||txt.indexOf('帮忙')>=0){showForward();}
+  else if(txt.indexOf('收')>=0||txt.indexOf('关')>=0||txt.indexOf('结束')>=0){toast('好的，先收起来');show('elder-home');}
+  else{toast('没听懂，可以点按钮操作');}
+}
+function askAI(mode){
+  var text=mode==='voice'?($('voice-text').value||'请帮我看一下这个界面'):'请帮我看一下这个界面';
+  var image=mode==='image'?state.image:null;
+  if(mode==='image'&&!image){toast('先选一张截图或拍照');return;}
+  show('elder-thinking');
+  if(mode==='image'){callHelp('image',text,image);return;}
+  api('/api/tutorials/match?q='+encodeURIComponent(text))
+    .then(function(d){
+      if(d&&d.match&&(d.match.steps||[]).length){
+        state.steps=(d.match.steps||[]).filter(Boolean);state.stepIdx=0;state.fromTutorial=true;
+        state.risk=null;showRiskBox();
+        renderStep();show('elder-steps');toast('📚 这个之前学过，直接照着做');
+      }else{
+        state.fromTutorial=false;callHelp('voice',text,null);
+      }
+    })
+    .catch(function(){state.fromTutorial=false;callHelp('voice',text,null);});
+}
+function callHelp(mode,text,image){
+  api('/api/help',{method:'POST',body:JSON.stringify({text:text,image:image})})
+    .then(function(data){
+      if(data.error){toast('出错了：'+data.error);show(mode==='voice'?'elder-voice':'elder-upload');return;}
+      state.steps=(data.steps||[]).filter(Boolean);state.stepIdx=0;state.fromTutorial=false;
+      state.risk=data.risk||{level:'low',reason:''};
+      showRiskBox();
+      renderStep();show('elder-steps');
+    })
+    .catch(function(){toast('网络出错或响应超时，请重试');show(mode==='voice'?'elder-voice':'elder-upload');});
+}
+function showRiskBox(){
+  var r=state.risk,box=$('risk-box');
+  if(!r||r.level==='low'||!r.level){box.style.display='none';box.innerHTML='';return;}
+  var cls=r.level==='danger'?'chip overdue':'chip warn';
+  var label=r.level==='danger'?'⚠️ 疑似高风险':'⚠️ 请留意';
+  box.innerHTML='<div class="card" style="background:var(--warn-soft);border-color:transparent"><span class="'+cls+'">'+label+'</span><p style="margin-top:8px">'+esc(r.reason||'')+'</p></div>';
+  box.style.display='block';
+}
+function askMoreDetail(){
+  if(!state.steps.length){return;}
+  var step=state.steps[state.stepIdx];
+  var question=$('voice-text').value||'请帮我看一下这个界面';
+  show('elder-thinking');
+  api('/api/help/followup',{method:'POST',body:JSON.stringify({question:question,step:step,steps:state.steps,idx:state.stepIdx,image:state.image})})
+    .then(function(data){
+      var subs=(data.steps||[]).filter(Boolean);
+      if(data.error||!subs.length){
+        toast('这一步暂时没法更细，先把原步骤再听一遍');
+        show('elder-steps');return;
+      }
+      var arr=state.steps.slice();
+      arr.splice.apply(arr,[state.stepIdx,1].concat(subs));
+      state.steps=arr;state.fromTutorial=false;
+      renderStep();show('elder-steps');toast('已把这一步拆得更细了');
+    })
+    .catch(function(){toast('网络出错，请重试');show('elder-steps');});
+}
+function restartAsk(){
+  state.steps=[];state.stepIdx=0;state.risk=null;state.image=null;
+  $('voice-text').value='';
+  showRiskBox();
+  show('elder-method');
+}
+function callFamily(){
+  api('/api/family').then(function(d){
+    var kids=d.children||[];
+    if(!kids.length){toast('还没有绑定的家人');return;}
+    var html=kids.map(function(k){
+      return '<div class="card" style="text-align:center"><b>'+esc(k.display_name)+'</b><p class="sub">'+esc(k.phone||'未设置电话')+'</p><a class="btn primary block" href="tel:'+esc(k.phone)+'">📞 拨打</a></div>';
+    }).join('');
+    showDialog('📞 打电话给家里人',html,'<button class="btn ghost block" onclick="closeDialog()">关闭</button>');
+  }).catch(function(){toast('读取失败');});
+}
+function renderStep(){
+  var arr=state.steps;
+  if(!arr.length){$('step-text').textContent='我没太明白，让家里人帮你看一下吧';$('step-chip').textContent='无法识别';return;}
+  $('step-chip').textContent=(state.fromTutorial?'📚 之前学过 · ':'')+'第 '+(state.stepIdx+1)+' 步 · 共 '+arr.length+' 步';
+  $('step-text').textContent=arr[state.stepIdx];
+  $('step-ok').textContent=state.stepIdx===arr.length-1?'都弄好啦':'这步好了';
+  if(state.autoSpeak){speak(arr[state.stepIdx]);}
+}
+function stepOk(){
+  if(state.stepIdx<state.steps.length-1){state.stepIdx++;renderStep();}
+  else{toast('太棒了！你成功了 🎉');speak('太好了，你成功了');show('elder-home');}
+}
+var zhVoice=null;
+function warmVoices(){
+  if(!('speechSynthesis' in window)){return;}
+  var vs=window.speechSynthesis.getVoices()||[];
+  zhVoice=vs.find(function(v){return /^zh/i.test(v.lang)&&/Tingting|Meijia|Huihui|XiaoAi|Xiao/i.test(v.name);})||vs.find(function(v){return /^zh/i.test(v.lang);})||null;
+}
+if('speechSynthesis' in window){warmVoices();window.speechSynthesis.onvoiceschanged=warmVoices;}
+function browserSpeak(txt){
+  if(!('speechSynthesis' in window)){return false;}
+  var u=new SpeechSynthesisUtterance(String(txt));u.lang='zh-CN';u.rate=0.9;u.volume=1;
+  if(zhVoice){u.voice=zhVoice;}
+  try{window.speechSynthesis.cancel();}catch(e){}
+  setTimeout(function(){try{window.speechSynthesis.speak(u);}catch(e){}},80);
+  return true;
+}
+function serverTts(txt){
+  if(!state.token){return browserSpeak(txt);}
+  var audio=$('tts-audio');
+  try{audio.pause();audio.removeAttribute('src');audio.load();}catch(e){}
+  fetch('/api/tts',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+state.token},body:JSON.stringify({text:String(txt).slice(0,300)})})
+    .then(function(r){if(!r.ok){throw new Error('tts fail');}return r.blob();})
+    .then(function(b){
+      var url=URL.createObjectURL(b);
+      audio.src=url;
+      var p=audio.play();
+      if(p&&p.catch){p.catch(function(){browserSpeak(txt);});}
+    })
+    .catch(function(){browserSpeak(txt);});
+}
+function say(txt,force){
+  if(!force&&!state.autoSpeak){return;}
+  serverTts(txt);
+}
+function speak(txt){say(txt,false);}
+function speakManual(txt){say(txt,true);}
+function testSpeak(){
+  say('你好，我是惦记，听到我说话了吗',true);
+}
+function speakNow(){if(state.steps[state.stepIdx]){speakManual(state.steps[state.stepIdx]);}}
+function showForward(){
+  var html='<p class="sub">问题：'+esc($('voice-text').value||'上传截图求助')+'</p>';
+  if(state.image){html+='<img class="thumb" src="'+esc(state.image)+'" alt="截图">';}
+  if(state.steps.length){html+='<p class="sub" style="margin-top:8px">进行到：'+esc(state.steps[state.stepIdx])+'</p>';}
+  if(state.risk&&state.risk.level!=='low'){
+    html+='<p class="sub" style="margin-top:8px">⚠️ '+(state.risk.level==='danger'?'疑似高风险':'需留意')+'：'+esc(state.risk.reason||'')+'</p>';
+  }
+  $('forward-summary').innerHTML=html;
+  state.forwardTarget=null;
+  $('forward-target').innerHTML='<p class="sub">正在加载家人列表…</p>';
+  api('/api/family').then(function(d){
+    var kids=d.children||[];
+    var h='<p class="sub">发给谁？</p>';
+    h+='<label class="row" style="padding:8px 0;cursor:pointer"><input type="radio" name="ft" checked onchange="state.forwardTarget=null" style="width:24px;height:24px"><span style="font-size:19px"><b>全部家人</b><br><span class="sub">女儿、孙女都能看到</span></span></label>';
+    kids.forEach(function(k){
+      var st=elderStyle({display_name:k.display_name});
+      h+='<label class="row" style="padding:8px 0;cursor:pointer;border-top:1px solid var(--border)"><input type="radio" name="ft" onchange="state.forwardTarget='+k.id+'" style="width:24px;height:24px"><span style="font-size:19px"><b>'+esc(k.display_name)+'</b><br><span class="sub">'+esc(k.relation||'家人')+'</span></span></label>';
+    });
+    $('forward-target').innerHTML=h;
+  }).catch(function(){$('forward-target').innerHTML='<p class="sub">家人列表加载失败，将发给全部家人</p>';});
+  show('elder-forward');
+}
+function sendForward(){
+  var text=state.mode==='voice'?($('voice-text').value||''):'';
+  api('/api/forward',{method:'POST',body:JSON.stringify({text:text,image:state.image,steps:state.steps,risk:state.risk||null,to_user_id:state.forwardTarget})})
+    .then(function(d){
+      if(d.id){state.curId=d.id;show('elder-sent');refreshSent();startSentPolling();}
+      else{toast('发送失败，请重试');}
+    })
+    .catch(function(){toast('发送失败，请重试');});
+}
+function startSentPolling(){
+  clearInterval(state.sentTimer);
+  state.sentTimer=setInterval(function(){refreshSent();},5000);
+}
+function refreshSent(){
+  if(!state.curId){return;}
+  api('/api/requests').then(function(list){
+    var it=list.find(function(x){return x.id===state.curId;});
+    if(!it){return;}
+    var t=$('sent-title'),s=$('sent-sub'),c=$('sent-chip');
+    if(it.status==='pending'){t.textContent='已经告诉家里人啦';s.textContent='他们看到后会来找你';c.textContent='等待处理';c.className='chip warn';}
+    else if(it.status==='accepted'){t.textContent='家里人正在帮你弄';s.textContent='稍等一下，马上就好';c.textContent='已接手';c.className='chip warn';}
+    else if(it.status==='done'){t.textContent='谢谢你帮我弄好啦 🎉';s.textContent='你太棒了！';c.textContent='已解决';c.className='chip good';}
+    else if(it.status==='withdrawn'){t.textContent='这条求助已撤回';s.textContent='不需要家里人帮忙了';c.textContent='已撤回';c.className='chip';}
+    var rb=$('reply-box');
+    if(it.reply){rb.style.display='block';rb.innerHTML='<div class="card"><div class="row"><b>家里人回复</b><button class="btn small" onclick="speakManualEnc(\''+enc(it.reply)+'\')">🔊 读给我听</button></div><p style="font-size:20px;margin-top:10px">'+esc(it.reply)+'</p></div>';}
+    else{rb.style.display='none';}
+    $('sent-actions').innerHTML=(it.status==='pending'||it.status==='accepted')?'<button class="btn ghost block" onclick="withdrawReq()">↩️ 撤回求助</button>':'';
+  }).catch(function(){});
+}
+function withdrawReq(){
+  api('/api/requests/withdraw',{method:'POST',body:JSON.stringify({id:state.curId})}).then(function(){
+    toast('已撤回');refreshSent();
+  }).catch(function(){toast('操作失败');});
+}
+
+/* ---------- 提醒 / 备忘录（老人端） ---------- */
+function goReminders(){loadElderReminders();show('elder-reminders');}
+function loadRemCount(){
+  api('/api/reminders').then(function(list){
+    var arr=list||[];
+    var n=arr.filter(function(r){return r.status!=='done';}).length;
+    $('rem-count').textContent=n+' 条待办';
+    if(!state.remGreeted){
+      state.remGreeted=true;
+      var today=arr.filter(function(r){return r.status!=='done'&&(r.is_today||r.is_overdue);});
+      if(today.length){
+        var msg='今天有 '+today.length+' 件待办要做';
+        toast('🔔 '+msg);
+        if(state.autoSpeak){speak(msg);}
+      }
+    }
+  }).catch(function(){});
+}
+function loadElderReminders(){
+  api('/api/reminders').then(function(list){
+    var box=$('rem-list');
+    if(!list||!list.length){box.innerHTML='<div class="card"><p class="sub">还没有待办</p></div>';return;}
+    box.innerHTML=list.map(function(r){
+      var done=r.status==='done';
+      var paused=!!r.paused;
+      var chips='';
+      if(done){chips='<span class="chip good">已办好</span>';}
+      else if(paused){chips='<span class="chip">已暂停</span>';}
+      else{
+        if(r.is_overdue){chips+='<span class="chip overdue">已过点</span>';}
+        else if(r.is_today){chips+='<span class="chip warn">今天</span>';}
+      }
+      var dueTxt=r.due?esc(r.due):'';
+      if(done&&r.done_at){dueTxt+='<br><span class="sub">完成于 '+esc(r.done_at)+'</span>';}
+      return '<div class="todo'+(done||paused?' done':'')+'"><span>'+esc(r.title)+(dueTxt?'<br><span class="sub">'+dueTxt+'</span>':'')+'</span><span style="display:flex;gap:8px;align-items:center">'+((done||paused)?chips:'<button class="btn good small" onclick="remDone('+r.id+')">办好了</button>'+chips)+'<button class="btn small" onclick="speakManualEnc(\''+enc(r.title)+'\')">🔊</button></span></div>';
+    }).join('');
+  }).catch(function(){toast('读取失败');});
+}
+function remDone(id){
+  api('/api/reminders/done',{method:'POST',body:JSON.stringify({id:id})}).then(function(){
+    toast('真棒，办好了');loadElderReminders();loadRemCount();
+  });
+}
+function goMemos(){loadElderMemos();show('elder-memos');}
+function loadElderMemos(){
+  api('/api/memos').then(function(list){
+    var box=$('memo-list');
+    if(!list||!list.length){box.innerHTML='<div class="card"><p class="sub">还没有重要信息</p></div>';return;}
+    box.innerHTML=list.map(function(m){
+      return '<div class="memo" onclick="toggleMemo(this)"><div class="row"><b>'+esc(m.label)+'</b><button class="btn small" onclick="event.stopPropagation();speakManualEnc(\''+enc(m.label+' '+m.value)+'\')">🔊 读给我听</button></div><div class="val" style="display:none;margin-top:8px">'+esc(m.value)+'</div><p class="sub" style="margin-top:4px">'+esc(m.note)+'</p></div>';
+    }).join('');
+  }).catch(function(){toast('读取失败');});
+}
+function toggleMemo(el){
+  var v=el.querySelector('.val');
+  v.style.display=v.style.display==='none'?'block':'none';
+}
+
+/* ---------- 子女端 ---------- */
+function loadRequests(){
+  api('/api/requests?'+eldQ()).then(function(list){
+    var box=$('req-list');
+    $('inbox-sub').textContent=currentElderName()+'发来的求助';
+    if(!list||!list.length){box.innerHTML='<div class="card"><p class="sub">还没有求助</p></div>';return;}
+    box.innerHTML=list.map(function(it){
+      var st=it.status==='done'?'<span class="chip good">已解决</span>':it.status==='accepted'?'<span class="chip warn">已接手</span>':it.status==='withdrawn'?'<span class="chip">已撤回</span>':'<span class="chip warn">待处理</span>';
+      if(it.risk&&it.risk.level==='danger'){st+='<span class="chip overdue">⚠️ 高风险</span>';}
+      else if(it.risk&&it.risk.level==='warn'){st+='<span class="chip warn">⚠️ 留意</span>';}
+      return '<div class="req-card" onclick="openDetail('+it.id+')"><div class="row"><b>'+esc(it.text||'截图求助')+'</b>'+st+'</div><p class="sub" style="margin-top:6px">'+esc(it.ts||'')+'</p>'+(it.reply?'<p class="sub" style="margin-top:4px">你的回复：'+esc(it.reply)+'</p>':'')+'</div>';
+    }).join('');
+  }).catch(function(){toast('读取失败');});
+}
+function openDetail(id){
+  api('/api/requests?'+eldQ()).then(function(list){
+    var it=list.find(function(x){return x.id===id;});if(!it){return;}
+    state.curId=id;
+    var html='<div class="card"><p class="sub">问题：'+esc(it.text||'截图求助')+'</p>'+(it.image?'<img class="thumb" src="'+esc(it.image)+'" alt="截图">':'')+'</div>';
+    html+='<div class="card"><p class="sub">AI 给出的步骤</p>'+(it.steps||[]).map(function(s,i){return '<div class="bubble'+(i===0?' ai':'')+'">'+(i+1)+'. '+esc(s)+'</div>';}).join('')+'</div>';
+    if(it.risk&&it.risk.level!=='low'){
+      html+='<div class="card" style="background:var(--warn-soft);border-color:transparent"><p class="sub">风险提示</p><p style="margin-top:6px">⚠️ '+(it.risk.level==='danger'?'疑似高风险':'需留意')+'：'+esc(it.risk.reason||'')+'</p></div>';
+    }
+    html+='<div class="card"><p class="sub">状态：'+(it.status==='done'?'已解决':it.status==='accepted'?'已接手':it.status==='withdrawn'?'已撤回':'待处理')+'</p>'+(it.reply?'<p class="sub">你的回复：'+esc(it.reply)+'</p>':'')+'</div>';
+    if(it.status!=='withdrawn'){
+      html+='<div class="actions"><button class="btn" onclick="callElder()">📞 视频教他</button><button class="btn" onclick="saveTutorial('+it.id+')">📚 存为教程</button></div>';
+    }
+    $('detail-body').innerHTML=html;
+    $('reply-text').value=it.reply||'';
+    show('child-detail');
+  });
+}
+function callElder(){
+  api('/api/family').then(function(d){
+    var elders=d.elders||[];
+    var e=null;
+    for(var i=0;i<elders.length;i++){if(elders[i].id===state.selElder){e=elders[i];break;}}
+    e=e||elders[0];
+    if(!e){toast('还没有绑定的长辈');return;}
+    var phone=e.phone||'未设置';
+    state.curPhone=phone;
+    showDialog('📞 视频教他',esc(e.display_name||'长辈')+' 的电话：'+esc(phone),'<a class="btn primary block" href="tel:'+esc(phone)+'">📞 拨打</a><button class="btn block" onclick="copyPhone()">📋 复制电话</button><p class="sub" style="text-align:center">用微信视频通话手把手教，最直观</p><button class="btn ghost block" onclick="closeDialog()">关闭</button>');
+  }).catch(function(){toast('读取失败');});
+}
+function copyPhone(){copyText(state.curPhone);}
+function saveTutorial(rid){
+  api('/api/tutorials/from-request',{method:'POST',body:JSON.stringify(Object.assign({request_id:rid},eldB()))}).then(function(d){
+    if(d.id){toast('已存为教程，长辈再问会自动复用');}
+    else{toast('操作失败');}
+  }).catch(function(){toast('操作失败');});
+}
+function showDialog(title,text,actionsHtml){
+  $('dialog-title').textContent=title;
+  $('dialog-text').innerHTML=text;
+  $('dialog-actions').innerHTML=actionsHtml;
+  $('dialog').style.display='flex';
+}
+function closeDialog(){$('dialog').style.display='none';}
+function copyText(v){
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(v).then(function(){toast('已复制');}).catch(function(){toast('复制失败');});
+  }else{toast('已复制：'+v);}
+}
+function loadChildTutorials(){
+  api('/api/tutorials?'+eldQ()).then(function(list){
+    var box=$('tut-list');
+    if(!list||!list.length){box.innerHTML='<div class="card"><p class="sub">还没有教程。可以在已解决的求助里点「存为教程」，或手动添加</p></div>';return;}
+    box.innerHTML=list.map(function(t){
+      return '<div class="req-card"><div class="row"><b>'+esc(t.title)+'</b><button class="btn small" onclick="delTutorial('+t.id+')">删除</button></div><p class="sub" style="margin-top:6px">共 '+(t.steps||[]).length+' 步</p>'+(t.steps||[]).slice(0,2).map(function(s,i){return '<div class="bubble'+(i===0?' ai':'')+'">'+(i+1)+'. '+esc(s)+'</div>';}).join('')+'</div>';
+    }).join('');
+  }).catch(function(){toast('读取失败');});
+}
+function addTutorial(){
+  var title=$('tut-title').value.trim();
+  var steps=$('tut-steps').value.split('\n').map(function(s){return s.trim();}).filter(Boolean);
+  if(!title||!steps.length){toast('教程名和步骤都要填');return;}
+  api('/api/tutorials',{method:'POST',body:JSON.stringify(Object.assign({title:title,steps:steps},eldB()))}).then(function(){
+    toast('已添加教程');$('tut-title').value='';$('tut-steps').value='';loadChildTutorials();
+  }).catch(function(){toast('添加失败');});
+}
+function delTutorial(id){
+  api('/api/tutorials/delete',{method:'POST',body:JSON.stringify(Object.assign({id:id},eldB()))}).then(function(){loadChildTutorials();}).catch(function(){});
+}
+function sendReply(){
+  var v=$('reply-text').value;if(!v){toast('写点内容再发');return;}
+  api('/api/reply',{method:'POST',body:JSON.stringify(Object.assign({id:state.curId,reply:v},eldB()))}).then(function(){
+    toast('已回复，长辈页面会显示并念出');loadRequests();
+  }).catch(function(){toast('发送失败');});
+}
+function markDone(){
+  api('/api/status',{method:'POST',body:JSON.stringify(Object.assign({id:state.curId,status:'done'},eldB()))}).then(function(){
+    toast('已标记解决');loadRequests();show('child-inbox');
+  }).catch(function(){toast('操作失败');});
+}
+function loadChildReminders(){
+  api('/api/reminders?'+eldQ()).then(function(list){
+    var box=$('rem-manage');
+    if(!list||!list.length){box.innerHTML='<div class="card"><p class="sub">还没有提醒</p></div>';return;}
+    var doneCount=0,weekDone=0;
+    var weekStart=new Date();weekStart.setDate(weekStart.getDate()-weekStart.getDay());weekStart.setHours(0,0,0,0);
+    list.forEach(function(r){
+      if(r.status==='done'){
+        doneCount++;
+        if(r.done_at&&new Date(String(r.done_at).replace(/-/g,'/'))>=weekStart){weekDone++;}
+      }
+    });
+    $('rem-stats').textContent='完成回执：已完成 '+doneCount+'/'+list.length+' · 本周完成 '+weekDone+' 次';
+    $('rem-stats').style.display='block';
+    box.innerHTML=list.map(function(r){
+      var done=r.status==='done';
+      var paused=!!r.paused;
+      var stateChip=done?'<span class="chip good">已完成</span>':(paused?'<span class="chip">已暂停</span>':'<span class="chip warn">进行中</span>');
+      var btns='<button class="btn small ghost" onclick="editReminder('+r.id+')">编辑</button>';
+      if(!done){btns+='<button class="btn small ghost" onclick="pauseReminder('+r.id+','+(paused?0:1)+')">'+(paused?'继续':'暂停')+'</button>';}
+      btns+='<button class="btn small" onclick="delReminder('+r.id+')">删除</button>';
+      return '<div class="todo'+(done||paused?' done':'')+'"><span>'+esc(r.title)+(r.due?'<br><span class="sub">'+esc(r.due)+'</span>':'')+(r.done_at?'<br><span class="sub">完成于 '+esc(r.done_at)+'</span>':'')+'</span><span style="display:flex;gap:8px;align-items:center">'+stateChip+btns+'</span></div>';
+    }).join('');
+  }).catch(function(){toast('读取失败');});
+}
+function saveReminder(){
+  var t=$('rem-title').value.trim(),d=$('rem-due').value.trim();
+  if(!t){toast('写点提醒内容');return;}
+  if(state.editRemId){
+    api('/api/reminders/update',{method:'POST',body:JSON.stringify(Object.assign({id:state.editRemId,title:t,note:'',due:d},eldB()))}).then(function(){
+      toast('已保存');clearReminderForm();loadChildReminders();
+    }).catch(function(){toast('保存失败');});
+    return;
+  }
+  api('/api/reminders',{method:'POST',body:JSON.stringify(Object.assign({title:t,note:'',due:d},eldB()))}).then(function(){
+    toast('已添加提醒');clearReminderForm();loadChildReminders();
+  }).catch(function(){toast('添加失败');});
+}
+function editReminder(id){
+  api('/api/reminders?'+eldQ()).then(function(list){
+    var r=(list||[]).find(function(x){return x.id===id;});if(!r){return;}
+    state.editRemId=id;
+    $('rem-title').value=r.title;
+    $('rem-due').value=r.due||'';
+    $('rem-save-btn').textContent='保存修改';
+    $('rem-cancel-btn').style.display='inline-flex';
+    window.scrollTo(0,0);
+  }).catch(function(){toast('读取失败');});
+}
+function cancelReminderEdit(){clearReminderForm();}
+function pauseReminder(id,paused){
+  api('/api/reminders/pause',{method:'POST',body:JSON.stringify(Object.assign({id:id,paused:paused?1:0},eldB()))}).then(function(){
+    toast(paused?'已暂停，长辈端不再提醒':'已恢复');loadChildReminders();
+  }).catch(function(){toast('操作失败');});
+}
+function fillDue(v){$('rem-due').value=v;}
+function clearReminderForm(){
+  state.editRemId=null;
+  $('rem-title').value='';$('rem-due').value='';
+  $('rem-save-btn').textContent='添加提醒';
+  $('rem-cancel-btn').style.display='none';
+}
+function delReminder(id){
+  api('/api/reminders/delete',{method:'POST',body:JSON.stringify(Object.assign({id:id},eldB()))}).then(function(){loadChildReminders();}).catch(function(){});
+}
+function loadChildMemos(){
+  api('/api/memos?'+eldQ()).then(function(list){
+    var box=$('memo-manage');
+    if(!list||!list.length){box.innerHTML='<div class="card"><p class="sub">还没有备忘录</p></div>';return;}
+    box.innerHTML=list.map(function(m){
+      return '<div class="memo"><div class="row"><b>'+esc(m.label)+'</b><button class="btn small" onclick="delMemo('+m.id+')">删除</button></div><div class="val" style="margin-top:6px">'+esc(m.value)+'</div></div>';
+    }).join('');
+  }).catch(function(){toast('读取失败');});
+}
+function addMemo(){
+  var l=$('memo-label').value.trim(),v=$('memo-value').value.trim();
+  if(!l||!v){toast('名称和内容都要填');return;}
+  api('/api/memos',{method:'POST',body:JSON.stringify(Object.assign({label:l,value:v,note:''},eldB()))}).then(function(){
+    toast('已添加');$('memo-label').value='';$('memo-value').value='';loadChildMemos();
+  }).catch(function(){toast('添加失败');});
+}
+function delMemo(id){
+  api('/api/memos/delete',{method:'POST',body:JSON.stringify(Object.assign({id:id},eldB()))}).then(function(){loadChildMemos();}).catch(function(){});
+}
+
+/* ---------- 启动 ---------- */
+loadPrefs();
+loadSaved();
+</script>
+</body>
+</html>

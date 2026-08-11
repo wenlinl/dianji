@@ -1,0 +1,1586 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Dianji Child App</title>
+<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
+</head>
+<body>
+<iframe sandbox="allow-scripts" referrerpolicy="no-referrer" title="Dianji Child App" srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
+&lt;title&gt;Dianji Child App&lt;/title&gt;
+&lt;style&gt;:root {
+  color-scheme: light dark;
+  background-color: var(
+    --background,
+    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))
+  ) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --color-background-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));
+  --card-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --popover: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255), rgb(45 45 45))
+  );
+  --popover-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --primary: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --primary-foreground: var(
+    --color-text-inverse,
+    light-dark(rgb(255 255 255), rgb(13 13 13))
+  );
+  --secondary: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))
+  );
+  --secondary-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: var(
+    --color-text-secondary,
+    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))
+  );
+  --accent: var(
+    --color-background-info,
+    light-dark(rgb(229 242 255), rgb(13 39 63))
+  );
+  --accent-foreground: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --destructive: var(
+    --color-text-warning,
+    light-dark(rgb(226 85 7), rgb(255 133 73))
+  );
+  --border: var(
+    --color-border-secondary,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+  --input: var(
+    --color-border-primary,
+    light-dark(
+      rgb(26 28 31 / 11.8%),
+      color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+    )
+  );
+  --ring: var(
+    --color-ring-primary,
+    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))
+  );
+  --font-size-base: var(--font-text-md-size, 14px);
+  --blue: light-dark(rgb(51 156 255), rgb(51 156 255));
+  --orange: light-dark(rgb(226 85 7), rgb(251 106 34));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+  --red: light-dark(rgb(224 46 42), rgb(255 103 100));
+  --purple: light-dark(rgb(146 79 247), rgb(173 123 249));
+  --yellow: light-dark(rgb(255 195 0), rgb(255 210 64));
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --radius: var(--border-radius-lg, 12.5px);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 17 17&#x27;%3E%3Cpath d=&#x27;M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z&#x27;/%3E%3C/svg%3E&quot;);
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+}
+
+:root[data-theme=&quot;light&quot;] {
+  color-scheme: light;
+}
+
+:root[data-theme=&quot;dark&quot;] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html &gt; body {
+  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */
+  --color-background-primary: var(
+    --background,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --color-text-primary: var(
+    --foreground,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --color-border-secondary: var(
+    --border,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+
+  margin: 0;
+  padding: 5px;
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium, 500);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table-responsive &gt; .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead th {
+  padding-block: 8px;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 6px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align=&quot;right&quot;]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align=&quot;center&quot;]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: superellipse(1.5);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget &gt; :not(.card) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls &gt; .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls &gt; .form-label &gt; :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type=&quot;file&quot;] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type=&quot;file&quot;]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type=&quot;file&quot;]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type=&quot;color&quot;] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: superellipse(1.5);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: &quot;&quot;;
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type=&quot;radio&quot;] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type=&quot;radio&quot;]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: &quot;&quot;;
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+    [aria-pressed=&quot;true&quot;],
+    [aria-selected=&quot;true&quot;],
+    .is-selected
+  ) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed=&quot;true&quot;], [aria-selected=&quot;true&quot;], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget &gt; svg {
+  width: 100%;
+}
+
+/* Model-authored chart rules can otherwise stretch icons after these styles load. */
+svg.lucide {
+  display: block;
+  width: 16px !important;
+  height: 16px !important;
+  flex: none;
+  margin: 0 !important;
+  stroke-width: 1.6;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html&gt;body{padding:0}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;dianji-app&quot; style=&quot;font-family:system-ui,-apple-system,&#x27;PingFang SC&#x27;,&#x27;Microsoft YaHei&#x27;,sans-serif;&quot;&gt;
+&lt;style&gt;
+#dianji-app{--bg:light-dark(#faf5ef,#191512);--surface:light-dark(#fffdfa,#262019);--ink:light-dark(#2b2118,#f3e9dc);--muted:light-dark(#8a7663,#b0a08d);--border:light-dark(#eee0d1,#3a3128);--primary:#e8590c;--primary-ink:#fff;--soft:light-dark(#fdeadd,#3a2a1d);--good:#2f9e44;--good-soft:light-dark(#e8f5ea,#1f3323);--warn:light-dark(#b25e09,#ffb224);--warn-soft:light-dark(#fdf0dc,#3a2c17);--shadow:0 14px 36px rgba(0,0,0,.14)}
+#dianji-app{max-width:480px;margin:0 auto;color:var(--ink)}
+#dianji-app .dc-phone{background:var(--surface);border:1px solid var(--border);border-radius:30px;box-shadow:var(--shadow);padding:16px 16px 8px}
+#dianji-app .dc-top{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:2px 4px 12px;border-bottom:1px solid var(--border)}
+#dianji-app .dc-brand{font-size:20px;font-weight:500}
+#dianji-app .dc-online{display:inline-flex;align-items:center;gap:5px;background:var(--good-soft);color:var(--good);border-radius:999px;padding:4px 10px;font-size:12px}
+#dianji-app .dc-screen{display:none;flex-direction:column;gap:14px;padding-top:14px;min-height:480px}
+#dianji-app .dc-screen.active{display:flex}
+#dianji-app h2{font-size:21px;margin:0;font-weight:500}
+#dianji-app .dc-sub{color:var(--muted);font-size:13px;margin:0}
+#dianji-app .dc-row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+#dianji-app .dc-card{background:var(--soft);border:1px solid var(--border);border-radius:16px;padding:14px}
+#dianji-app .dc-chip{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:3px 10px;font-size:12px}
+#dianji-app .dc-chip.warn{background:var(--warn-soft);color:var(--warn)}
+#dianji-app .dc-chip.good{background:var(--good-soft);color:var(--good)}
+#dianji-app .dc-chip.mut{background:var(--soft);color:var(--muted)}
+#dianji-app .dc-btn{border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--ink);padding:11px 16px;font-size:15px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+#dianji-app .dc-btn.primary{background:var(--primary);color:#fff;border-color:var(--primary)}
+#dianji-app .dc-btn.ghost{background:transparent}
+#dianji-app .dc-btn.good{background:var(--good);color:#fff;border-color:var(--good)}
+#dianji-app .dc-btn.block{width:100%}
+#dianji-app .dc-role{display:flex;flex-direction:column;gap:14px;margin-top:10px}
+#dianji-app .dc-role-btn{display:flex;align-items:center;gap:14px;background:var(--soft);border:1px solid var(--border);border-radius:20px;padding:18px;color:var(--ink);cursor:pointer;text-align:left}
+#dianji-app .dc-role-btn i{font-size:26px;color:var(--primary)}
+#dianji-app .dc-role-btn b{font-size:21px;font-weight:500}
+#dianji-app .dc-role-btn span{font-size:13px;color:var(--muted)}
+#dianji-app .dc-tabs{display:flex;gap:6px;margin-top:12px;padding-top:10px;border-top:1px solid var(--border)}
+#dianji-app .dc-tabs button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:transparent;border:none;border-radius:12px;padding:8px 4px;font-size:12px;color:var(--muted);cursor:pointer}
+#dianji-app .dc-tabs button.on{color:var(--primary);font-weight:500}
+#dianji-app .dc-tabs .dc-badge{margin-left:auto;background:var(--primary);color:#fff;border-radius:999px;font-size:10px;padding:0 6px;margin-top:-2px}
+#dianji-app .dc-t{display:flex;gap:10px}
+#dianji-app .dc-t .dc-avatar{flex:none;width:32px;height:32px;border-radius:50%;background:var(--soft);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:14px}
+#dianji-app .dc-t .dc-bubble{background:var(--soft);border:1px solid var(--border);border-radius:14px;padding:10px 13px;font-size:14px;max-width:100%}
+#dianji-app .dc-t.ai .dc-bubble{background:var(--surface)}
+#dianji-app .dc-t .dc-meta{color:var(--muted);font-size:11px;margin-top:4px}
+#dianji-app .dc-stuck{border:1px dashed var(--warn);background:var(--warn-soft);color:var(--warn);border-radius:12px;padding:10px 13px;font-size:13px}
+#dianji-app .dc-elder{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:10px;display:flex;flex-direction:column;gap:10px}
+#dianji-app .dc-wechat{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;min-height:240px}
+#dianji-app .dc-wechat-bar{display:flex;justify-content:space-between;padding:8px 12px;font-size:13px;color:var(--muted);border-bottom:1px solid var(--border);background:var(--soft)}
+#dianji-app .dc-art{padding:12px}
+#dianji-app .dc-art-title{font-size:14px;font-weight:500;margin-bottom:8px}
+#dianji-app .dc-art-line{height:8px;background:var(--border);border-radius:4px;margin:6px 0}
+#dianji-app .dc-art-line.short{width:55%}
+#dianji-app .dc-ov{position:absolute;right:8px;top:46px;width:min(80%,240px);background:rgba(232,89,12,.6);color:#fff;border-radius:14px;padding:9px 11px;box-shadow:0 10px 24px rgba(0,0,0,.22);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.26)}
+#dianji-app .dc-ov-head{font-size:11px;opacity:.95;display:flex;justify-content:space-between}
+#dianji-app .dc-ov p{font-size:18px;line-height:1.35;margin:5px 0 0}
+#dianji-app .dc-toast{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);background:var(--ink);color:var(--surface);border-radius:999px;padding:7px 14px;font-size:13px;white-space:nowrap;box-shadow:var(--shadow)}
+#dianji-app .dc-callbar{display:flex;align-items:center;gap:8px;background:var(--good-soft);color:var(--good);border-radius:14px;padding:9px 12px;font-size:13px}
+#dianji-app .dc-quick{display:flex;flex-direction:column;gap:8px}
+#dianji-app .dc-quick button{justify-content:flex-start;font-size:14px;padding:10px 14px}
+#dianji-app .dc-input{border:1px solid var(--border);border-radius:12px;padding:10px 12px;font-size:14px;background:var(--surface);color:var(--ink);width:100%}
+#dianji-app .dc-label{font-size:12px;color:var(--muted);margin:0 0 5px}
+#dianji-app .dc-form{display:flex;flex-direction:column;gap:10px}
+#dianji-app .dc-rem-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#dianji-app .dc-nav2{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}
+#dianji-app .dc-nav2 button{background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:8px 14px;font-size:13px;color:var(--ink);cursor:pointer}
+#dianji-app .dc-nav2 button.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+#dianji-app .dc-elders{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+#dianji-app .dc-elder{background:var(--soft);border:1px solid var(--border);border-radius:999px;padding:6px 11px;font-size:13px;color:var(--ink);cursor:pointer;display:inline-flex;align-items:center}
+#dianji-app .dc-elder.on{border-color:var(--primary);color:var(--primary);font-weight:500}
+#dianji-app .dc-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--good);margin-right:5px}
+#dianji-app .dc-dot.off{background:var(--muted)}
+#dianji-app .dc-code{background:var(--soft);border:1px dashed var(--primary);color:var(--primary);border-radius:12px;padding:12px;text-align:center;font-size:24px;font-weight:500;letter-spacing:4px}
+#dianji-app .dc-login{display:flex;flex-direction:column;gap:12px;margin-top:16px}
+#dianji-app .dc-login-logo{font-size:36px;font-weight:500;color:var(--primary);text-align:center}
+#dianji-app .dc-slogan{text-align:center;color:var(--muted);font-size:14px;margin:0 0 6px}
+#dianji-app .dc-switch-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:15px}
+#dianji-app .dc-switch-row:last-child{border-bottom:none}
+#dianji-app .dc-switch-row input{width:40px;height:22px;accent-color:var(--primary)}
+&lt;/style&gt;
+&lt;div class=&quot;dc-phone&quot; role=&quot;group&quot; aria-label=&quot;惦记 App · 子女端&quot;&gt;
+  &lt;div class=&quot;dc-top&quot;&gt;&lt;span class=&quot;dc-brand&quot;&gt;惦记&lt;/span&gt;&lt;div class=&quot;dc-elders&quot; id=&quot;dc-elders&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;dc-elder on&quot; data-elder=&quot;外公&quot;&gt;&lt;span class=&quot;dc-dot&quot;&gt;&lt;/span&gt;外公&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;dc-elder&quot; data-elder=&quot;外婆&quot;&gt;&lt;span class=&quot;dc-dot off&quot;&gt;&lt;/span&gt;外婆&lt;/button&gt;
+    &lt;button type=&quot;button&quot; class=&quot;dc-elder&quot; data-elder=&quot;奶奶&quot;&gt;&lt;span class=&quot;dc-dot&quot;&gt;&lt;/span&gt;奶奶&lt;/button&gt;
+  &lt;/div&gt;&lt;/div&gt;
+
+  &lt;section class=&quot;dc-screen active&quot; data-cs=&quot;login&quot;&gt;
+    &lt;div class=&quot;dc-login&quot;&gt;
+      &lt;div class=&quot;dc-login-logo&quot;&gt;惦记&lt;/div&gt;
+      &lt;p class=&quot;dc-slogan&quot;&gt;千里之外，也在身边&lt;/p&gt;
+      &lt;input type=&quot;text&quot; class=&quot;dc-input&quot; value=&quot;138 0000 0000&quot; aria-label=&quot;手机号&quot;&gt;
+      &lt;button type=&quot;button&quot; class=&quot;dc-btn primary block&quot; id=&quot;dc-login-go&quot;&gt;登录&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;dc-btn block&quot; id=&quot;dc-login-wechat&quot;&gt;&lt;i data-lucide=&quot;message-circle&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;微信一键登录&lt;/button&gt;
+      &lt;p class=&quot;dc-sub&quot; style=&quot;text-align:center&quot;&gt;登录后选择身份，之后可在「我的 · 身份管理」修改&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;dc-screen&quot; data-cs=&quot;role&quot;&gt;
+    &lt;h2&gt;选择你的身份&lt;/h2&gt;
+    &lt;p class=&quot;dc-sub&quot;&gt;你是帮家人用，还是需要帮助？&lt;/p&gt;
+    &lt;div class=&quot;dc-role&quot;&gt;
+      &lt;button type=&quot;button&quot; class=&quot;dc-role-btn&quot; id=&quot;dc-role-elder&quot;&gt;&lt;i data-lucide=&quot;heart&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;&lt;b&gt;我是长辈&lt;/b&gt;&lt;br&gt;&lt;span&gt;需要帮助 · 进入老人端&lt;/span&gt;&lt;/span&gt;&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;dc-role-btn&quot; id=&quot;dc-role-child&quot;&gt;&lt;i data-lucide=&quot;user&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;&lt;b&gt;我是子女&lt;/b&gt;&lt;br&gt;&lt;span&gt;帮家里老人用 · 进入子女端&lt;/span&gt;&lt;/span&gt;&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;dc-screen&quot; data-cs=&quot;inbox&quot;&gt;
+    &lt;div class=&quot;dc-row&quot;&gt;&lt;div&gt;&lt;h2 id=&quot;dc-inbox-title&quot;&gt;外公的收件箱&lt;/h2&gt;&lt;p class=&quot;dc-sub&quot;&gt;求助已整理成&quot;发生了什么&quot;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;div id=&quot;dc-inbox-body&quot;&gt;
+    &lt;div class=&quot;dc-card&quot; style=&quot;cursor:pointer&quot; id=&quot;dc-card-1&quot;&gt;
+      &lt;div class=&quot;dc-row&quot;&gt;
+        &lt;div style=&quot;display:flex;align-items:center;gap:10px&quot;&gt;
+          &lt;div class=&quot;dc-avatar&quot;&gt;外&lt;/div&gt;
+          &lt;div&gt;&lt;b&gt;转发文章到家族群&lt;/b&gt;&lt;br&gt;&lt;span class=&quot;dc-sub&quot;&gt;2 分钟前 · 语音 3 条 · 截图 2 张&lt;/span&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;span class=&quot;dc-chip warn&quot;&gt;待处理&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;p class=&quot;dc-sub&quot; style=&quot;margin-top:8px&quot;&gt;卡在第 1 步：找不到右上角三个点。&lt;/p&gt;
+      &lt;div style=&quot;display:flex;gap:10px;margin-top:10px&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;dc-btn primary&quot; id=&quot;dc-help1&quot;&gt;&lt;i data-lucide=&quot;phone&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;帮他看看&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;dc-btn&quot; id=&quot;dc-detail1&quot;&gt;打开回溯&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;dc-card&quot;&gt;
+      &lt;div class=&quot;dc-row&quot;&gt;
+        &lt;div style=&quot;display:flex;align-items:center;gap:10px&quot;&gt;
+          &lt;div class=&quot;dc-avatar&quot;&gt;外&lt;/div&gt;
+          &lt;div&gt;&lt;b&gt;养老金认证怎么弄&lt;/b&gt;&lt;br&gt;&lt;span class=&quot;dc-sub&quot;&gt;昨天 · AI 自动解决 · 6 分钟&lt;/span&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;span class=&quot;dc-chip good&quot;&gt;&lt;i data-lucide=&quot;check&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;已解决&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;dc-card&quot;&gt;
+      &lt;div class=&quot;dc-row&quot;&gt;
+        &lt;div style=&quot;display:flex;align-items:center;gap:10px&quot;&gt;
+          &lt;div class=&quot;dc-avatar&quot;&gt;外&lt;/div&gt;
+          &lt;div&gt;&lt;b&gt;手机内存满了&lt;/b&gt;&lt;br&gt;&lt;span class=&quot;dc-sub&quot;&gt;8 月 2 日 · AI 自动解决 · 已是教程&lt;/span&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;span class=&quot;dc-chip good&quot;&gt;&lt;i data-lucide=&quot;check&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;已解决&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;dc-screen&quot; data-cs=&quot;detail&quot;&gt;
+    &lt;button type=&quot;button&quot; class=&quot;dc-btn ghost&quot; style=&quot;align-self:flex-start;font-size:14px&quot; id=&quot;dc-back-inbox&quot;&gt;&lt;i data-lucide=&quot;arrow-left&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;收件箱&lt;/button&gt;
+    &lt;div class=&quot;dc-row&quot;&gt;&lt;h2&gt;外公 · 转发文章&lt;/h2&gt;&lt;span class=&quot;dc-chip warn&quot; id=&quot;dc-detail-chip&quot;&gt;待处理&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;dc-t&quot;&gt;
+      &lt;div class=&quot;dc-avatar&quot;&gt;外&lt;/div&gt;
+      &lt;div class=&quot;dc-bubble&quot;&gt;我想把朋友发的那篇文章，转到家族群。&lt;span class=&quot;dc-meta&quot;&gt;&lt;i data-lucide=&quot;volume-2&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt; 语音 0:12&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;dc-t ai&quot;&gt;
+      &lt;div class=&quot;dc-avatar&quot;&gt;惦&lt;/div&gt;
+      &lt;div class=&quot;dc-bubble&quot;&gt;第 1 步：点右上角那三个点（···）。&lt;span class=&quot;dc-meta&quot;&gt;&lt;i data-lucide=&quot;volume-2&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt; 已念给外公听&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;dc-t&quot;&gt;
+      &lt;div class=&quot;dc-avatar&quot;&gt;外&lt;/div&gt;
+      &lt;div class=&quot;dc-bubble&quot;&gt;没找到，我不知道三个点在哪。&lt;span class=&quot;dc-meta&quot;&gt;语音 0:08&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;dc-stuck&quot;&gt;&lt;i data-lucide=&quot;alert-circle&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt; 卡点：第 1 步 · 外公连续 2 次没找到，已征得同意转发给你&lt;/div&gt;
+    &lt;div class=&quot;dc-card&quot;&gt;
+      &lt;div class=&quot;dc-label&quot;&gt;发一句话给外公（显示在小窗并语音念出）&lt;/div&gt;
+      &lt;div style=&quot;display:flex;gap:8px&quot;&gt;
+        &lt;input type=&quot;text&quot; class=&quot;dc-input&quot; id=&quot;dc-reply&quot; value=&quot;别急，点屏幕最上面一行，最右边那个&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;dc-btn primary&quot; id=&quot;dc-send-reply&quot;&gt;&lt;i data-lucide=&quot;send&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div style=&quot;display:flex;gap:10px;margin-top:10px&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;dc-btn good&quot; id=&quot;dc-start-call&quot;&gt;&lt;i data-lucide=&quot;phone&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;投屏通话&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;dc-btn&quot; id=&quot;dc-mark-done&quot;&gt;&lt;i data-lucide=&quot;check&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;已解决&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;dc-screen&quot; data-cs=&quot;call&quot;&gt;
+    &lt;div class=&quot;dc-callbar&quot;&gt;&lt;i data-lucide=&quot;phone&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span id=&quot;dc-call-state&quot;&gt;通话中 02:36 · 屏幕共享已连接&lt;/span&gt;&lt;/div&gt;
+    &lt;div class=&quot;dc-elder&quot;&gt;
+      &lt;div style=&quot;display:flex;justify-content:space-between;font-size:12px;color:var(--muted)&quot;&gt;&lt;span&gt;外公的屏幕（实时）&lt;/span&gt;&lt;span&gt;&lt;i data-lucide=&quot;monitor&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt; 共享中&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;dc-wechat&quot; id=&quot;dc-wechat&quot;&gt;
+        &lt;div class=&quot;dc-wechat-bar&quot;&gt;&lt;span&gt;‹ 微信&lt;/span&gt;&lt;span aria-hidden=&quot;true&quot;&gt;···&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;dc-art&quot;&gt;
+          &lt;div class=&quot;dc-art-title&quot;&gt;三件小事，让家人更亲近&lt;/div&gt;
+          &lt;div class=&quot;dc-art-line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;dc-art-line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;dc-art-line short&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;dc-ov&quot;&gt;&lt;div class=&quot;dc-ov-head&quot;&gt;&lt;span&gt;惦记 · 正在教你&lt;/span&gt;&lt;span&gt;语音播报&lt;/span&gt;&lt;/div&gt;&lt;p id=&quot;dc-ov-text&quot;&gt;点右上角那三个点（···）&lt;/p&gt;&lt;/div&gt;
+        &lt;div class=&quot;dc-toast&quot; id=&quot;dc-toast&quot; style=&quot;display:none&quot;&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div style=&quot;display:flex;gap:8px;flex-wrap:wrap&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;dc-btn&quot; id=&quot;dc-demo-ok&quot;&gt;演示：外公点好了&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;dc-btn&quot; id=&quot;dc-demo-stuck&quot;&gt;演示：外公卡住了&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;dc-card&quot;&gt;
+      &lt;div class=&quot;dc-label&quot;&gt;快速指令（一键发到外公小窗）&lt;/div&gt;
+      &lt;div class=&quot;dc-quick&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;dc-btn&quot; data-send=&quot;点屏幕最上面一行，最右边那个&quot;&gt;点右上角三个点&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;dc-btn&quot; data-send=&quot;点「分享给朋友」，再选「家庭群」&quot;&gt;点分享给朋友&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;dc-btn&quot; data-send=&quot;选好了就点「发送」&quot;&gt;点发送&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div style=&quot;display:flex;gap:10px&quot;&gt;
+      &lt;button type=&quot;button&quot; class=&quot;dc-btn&quot; id=&quot;dc-mute&quot;&gt;&lt;i data-lucide=&quot;mic&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;静音&lt;/button&gt;
+      &lt;button type=&quot;button&quot; class=&quot;dc-btn ghost&quot; id=&quot;dc-end-call&quot;&gt;&lt;i data-lucide=&quot;phone-off&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;结束通话&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;dc-screen&quot; data-cs=&quot;reminders&quot;&gt;
+    &lt;div class=&quot;dc-row&quot;&gt;
+      &lt;div&gt;&lt;h2&gt;提醒管理&lt;/h2&gt;&lt;p class=&quot;dc-sub&quot;&gt;录入后定时推送，办好了回传状态&lt;/p&gt;&lt;/div&gt;
+      &lt;button type=&quot;button&quot; class=&quot;dc-btn primary&quot; id=&quot;dc-add-toggle&quot;&gt;&lt;i data-lucide=&quot;plus&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;添加&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;dc-card dc-form&quot; id=&quot;dc-add-form&quot; style=&quot;display:none&quot;&gt;
+      &lt;div&gt;&lt;div class=&quot;dc-label&quot;&gt;提醒内容&lt;/div&gt;&lt;input type=&quot;text&quot; class=&quot;dc-input&quot; id=&quot;dc-new-text&quot; placeholder=&quot;该吃药了&quot;&gt;&lt;/div&gt;
+      &lt;div&gt;&lt;div class=&quot;dc-label&quot;&gt;时间&lt;/div&gt;&lt;input type=&quot;text&quot; class=&quot;dc-input&quot; id=&quot;dc-new-time&quot; placeholder=&quot;每天 08:00&quot;&gt;&lt;/div&gt;
+      &lt;div style=&quot;display:flex;gap:8px&quot;&gt;&lt;select class=&quot;dc-input&quot; id=&quot;dc-new-repeat&quot;&gt;&lt;option&gt;每天&lt;/option&gt;&lt;option&gt;每周&lt;/option&gt;&lt;option&gt;一次性&lt;/option&gt;&lt;/select&gt;&lt;button type=&quot;button&quot; class=&quot;dc-btn primary&quot; id=&quot;dc-add-save&quot;&gt;保存&lt;/button&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;dc-rem-list&quot; style=&quot;display:flex;flex-direction:column;gap:10px&quot;&gt;&lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;dc-screen&quot; data-cs=&quot;history&quot;&gt;
+    &lt;div&gt;&lt;h2&gt;教程沉淀&lt;/h2&gt;&lt;p class=&quot;dc-sub&quot;&gt;同类问题再出现，AI 优先用这里的解法&lt;/p&gt;&lt;/div&gt;
+    &lt;div id=&quot;dc-hist-body&quot; style=&quot;display:flex;flex-direction:column;gap:10px&quot;&gt;
+      &lt;div class=&quot;dc-card dc-rem-row&quot;&gt;&lt;div style=&quot;flex:1;min-width:150px&quot;&gt;&lt;b&gt;转发文章到家族群&lt;/b&gt;&lt;br&gt;&lt;span class=&quot;dc-sub&quot;&gt;3 步 · 用 2 次&lt;/span&gt;&lt;/div&gt;&lt;button type=&quot;button&quot; class=&quot;dc-btn&quot; data-hist=&quot;1&quot;&gt;做成教程&lt;/button&gt;&lt;/div&gt;
+      &lt;div class=&quot;dc-card dc-rem-row&quot;&gt;&lt;div style=&quot;flex:1;min-width:150px&quot;&gt;&lt;b&gt;找不到相册&lt;/b&gt;&lt;br&gt;&lt;span class=&quot;dc-sub&quot;&gt;2 步 · 用 3 次&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;dc-chip good&quot;&gt;&lt;i data-lucide=&quot;star&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;已是教程&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;dc-card dc-rem-row&quot;&gt;&lt;div style=&quot;flex:1;min-width:150px&quot;&gt;&lt;b&gt;清理手机内存&lt;/b&gt;&lt;br&gt;&lt;span class=&quot;dc-sub&quot;&gt;4 步 · 用 1 次&lt;/span&gt;&lt;/div&gt;&lt;button type=&quot;button&quot; class=&quot;dc-btn&quot; data-hist=&quot;2&quot;&gt;做成教程&lt;/button&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;dc-screen&quot; data-cs=&quot;me&quot;&gt;
+    &lt;h2&gt;我的&lt;/h2&gt;
+    &lt;div class=&quot;dc-card&quot;&gt;
+      &lt;div class=&quot;dc-row&quot;&gt;&lt;div style=&quot;display:flex;align-items:center;gap:10px&quot;&gt;&lt;div class=&quot;dc-avatar&quot;&gt;你&lt;/div&gt;&lt;div&gt;&lt;b&gt;外孙&lt;/b&gt;&lt;br&gt;&lt;span class=&quot;dc-sub&quot;&gt;138 0000 0000&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;dc-chip good&quot;&gt;当前身份：子女&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;dc-card&quot;&gt;
+      &lt;div class=&quot;dc-label&quot;&gt;设置&lt;/div&gt;
+      &lt;div class=&quot;dc-switch-row&quot;&gt;&lt;span&gt;通知提醒&lt;/span&gt;&lt;input type=&quot;checkbox&quot; checked&gt;&lt;/div&gt;
+      &lt;div class=&quot;dc-switch-row&quot;&gt;&lt;span&gt;字体更大&lt;/span&gt;&lt;input type=&quot;checkbox&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;dc-switch-row&quot;&gt;&lt;span&gt;帮助与教学&lt;/span&gt;&lt;span class=&quot;dc-sub&quot;&gt;怎么看教程&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;dc-card&quot;&gt;
+      &lt;div class=&quot;dc-label&quot;&gt;身份管理&lt;/div&gt;
+      &lt;div class=&quot;dc-rem-row&quot;&gt;&lt;div style=&quot;flex:1;min-width:150px&quot;&gt;&lt;b&gt;我是子女&lt;/b&gt;&lt;br&gt;&lt;span class=&quot;dc-sub&quot;&gt;帮家里老人用&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;dc-chip good&quot;&gt;当前&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;dc-rem-row&quot; style=&quot;margin-top:8px&quot;&gt;&lt;div style=&quot;flex:1;min-width:150px&quot;&gt;&lt;b&gt;我是长辈&lt;/b&gt;&lt;br&gt;&lt;span class=&quot;dc-sub&quot;&gt;需要帮助时切换&lt;/span&gt;&lt;/div&gt;&lt;button type=&quot;button&quot; class=&quot;dc-btn ghost&quot; id=&quot;dc-use-elder&quot;&gt;使用老人端&lt;/button&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;dc-card&quot;&gt;
+      &lt;div class=&quot;dc-label&quot;&gt;绑定关系&lt;/div&gt;
+      &lt;div id=&quot;dc-family-list&quot; style=&quot;display:flex;flex-direction:column;gap:8px&quot;&gt;&lt;/div&gt;
+      &lt;button type=&quot;button&quot; class=&quot;dc-btn primary&quot; id=&quot;dc-add-elder&quot; style=&quot;margin-top:10px&quot;&gt;&lt;i data-lucide=&quot;plus&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;添加老人&lt;/button&gt;
+      &lt;div class=&quot;dc-form&quot; id=&quot;dc-invite-form&quot; style=&quot;display:none;margin-top:10px&quot;&gt;
+        &lt;div&gt;&lt;div class=&quot;dc-label&quot;&gt;老人怎么称呼&lt;/div&gt;&lt;input type=&quot;text&quot; class=&quot;dc-input&quot; id=&quot;dc-new-elder-name&quot; placeholder=&quot;爷爷&quot;&gt;&lt;/div&gt;
+        &lt;button type=&quot;button&quot; class=&quot;dc-btn&quot; id=&quot;dc-gen-code&quot;&gt;生成邀请码&lt;/button&gt;
+        &lt;div id=&quot;dc-code-wrap&quot; style=&quot;display:none&quot;&gt;
+          &lt;div class=&quot;dc-code&quot;&gt;368214&lt;/div&gt;
+          &lt;p class=&quot;dc-sub&quot;&gt;让老人在老人端点「我是长辈」→ 输入这个码，自动绑定&lt;/p&gt;
+          &lt;button type=&quot;button&quot; class=&quot;dc-btn good block&quot; id=&quot;dc-bind-done&quot;&gt;我发给他了，完成&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;div class=&quot;dc-tabs&quot; id=&quot;dc-tabs&quot; style=&quot;display:none&quot;&gt;
+    &lt;button type=&quot;button&quot; data-tab=&quot;inbox&quot; class=&quot;on&quot;&gt;&lt;i data-lucide=&quot;inbox&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;收件箱&lt;span class=&quot;dc-badge&quot; id=&quot;dc-inbox-badge&quot;&gt;1&lt;/span&gt;&lt;/button&gt;
+    &lt;button type=&quot;button&quot; data-tab=&quot;reminders&quot;&gt;&lt;i data-lucide=&quot;bell&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;提醒&lt;/button&gt;
+    &lt;button type=&quot;button&quot; data-tab=&quot;history&quot;&gt;&lt;i data-lucide=&quot;book-open&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;教程&lt;/button&gt;
+    &lt;button type=&quot;button&quot; data-tab=&quot;me&quot;&gt;&lt;i data-lucide=&quot;user&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;我的&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;nav class=&quot;dc-nav2&quot; aria-label=&quot;流程步骤&quot;&gt;
+  &lt;button type=&quot;button&quot; data-goto=&quot;login&quot;&gt;登录&lt;/button&gt;
+  &lt;button type=&quot;button&quot; data-goto=&quot;role&quot;&gt;身份选择&lt;/button&gt;
+  &lt;button type=&quot;button&quot; data-goto=&quot;inbox&quot;&gt;收件箱&lt;/button&gt;
+  &lt;button type=&quot;button&quot; data-goto=&quot;detail&quot;&gt;回溯&lt;/button&gt;
+  &lt;button type=&quot;button&quot; data-goto=&quot;call&quot;&gt;通话&lt;/button&gt;
+  &lt;button type=&quot;button&quot; data-goto=&quot;reminders&quot;&gt;提醒&lt;/button&gt;
+  &lt;button type=&quot;button&quot; data-goto=&quot;history&quot;&gt;教程&lt;/button&gt;
+  &lt;button type=&quot;button&quot; data-goto=&quot;me&quot;&gt;我的&lt;/button&gt;
+&lt;/nav&gt;
+
+&lt;script&gt;
+(function(){
+  var root=document.getElementById(&#x27;dianji-app&#x27;);
+  var screens=root.querySelectorAll(&#x27;[data-cs]&#x27;);
+  var nav2=root.querySelectorAll(&#x27;.dc-nav2 button&#x27;);
+  var tabs=root.querySelectorAll(&#x27;.dc-tabs button&#x27;);
+  var roleSet=false,cur=&#x27;外公&#x27;;
+  function refreshIcons(){
+    try{if(window.lucide&amp;&amp;lucide.createIcons){lucide.createIcons({attrs:{width:16,height:16}});}}catch(e){}
+  }
+  var emptyInbox=&#x27;&lt;div class=&quot;dc-card&quot;&gt;&lt;p class=&quot;dc-sub&quot;&gt;还没有发过求助&lt;/p&gt;&lt;/div&gt;&#x27;;
+  var emptyRem=&#x27;&lt;div class=&quot;dc-card&quot;&gt;&lt;p class=&quot;dc-sub&quot;&gt;还没有提醒&lt;/p&gt;&lt;/div&gt;&#x27;;
+  var emptyHist=&#x27;&lt;div class=&quot;dc-card&quot;&gt;&lt;p class=&quot;dc-sub&quot;&gt;还没有沉淀的教程&lt;/p&gt;&lt;/div&gt;&#x27;;
+  var data={
+    &#x27;外公&#x27;:{
+      online:true,
+      inbox:&#x27;&lt;div class=&quot;dc-card&quot; style=&quot;cursor:pointer&quot; id=&quot;dc-card-1&quot;&gt;&lt;div class=&quot;dc-row&quot;&gt;&lt;div style=&quot;display:flex;align-items:center;gap:10px&quot;&gt;&lt;div class=&quot;dc-avatar&quot;&gt;外&lt;/div&gt;&lt;div&gt;&lt;b&gt;转发文章到家族群&lt;/b&gt;&lt;br&gt;&lt;span class=&quot;dc-sub&quot;&gt;2 分钟前 · 语音 3 条 · 截图 2 张&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;dc-chip warn&quot;&gt;待处理&lt;/span&gt;&lt;/div&gt;&lt;p class=&quot;dc-sub&quot; style=&quot;margin-top:8px&quot;&gt;卡在第 1 步：找不到右上角三个点。&lt;/p&gt;&lt;div style=&quot;display:flex;gap:10px;margin-top:10px&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;dc-btn primary&quot; id=&quot;dc-help1&quot;&gt;&lt;i data-lucide=&quot;phone&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;帮他看看&lt;/button&gt;&lt;button type=&quot;button&quot; class=&quot;dc-btn&quot; id=&quot;dc-detail1&quot;&gt;打开回溯&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;dc-card&quot;&gt;&lt;div class=&quot;dc-row&quot;&gt;&lt;div style=&quot;display:flex;align-items:center;gap:10px&quot;&gt;&lt;div class=&quot;dc-avatar&quot;&gt;外&lt;/div&gt;&lt;div&gt;&lt;b&gt;养老金认证怎么弄&lt;/b&gt;&lt;br&gt;&lt;span class=&quot;dc-sub&quot;&gt;昨天 · AI 自动解决 · 6 分钟&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;dc-chip good&quot;&gt;&lt;i data-lucide=&quot;check&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;已解决&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;dc-card&quot;&gt;&lt;div class=&quot;dc-row&quot;&gt;&lt;div style=&quot;display:flex;align-items:center;gap:10px&quot;&gt;&lt;div class=&quot;dc-avatar&quot;&gt;外&lt;/div&gt;&lt;div&gt;&lt;b&gt;手机内存满了&lt;/b&gt;&lt;br&gt;&lt;span class=&quot;dc-sub&quot;&gt;8 月 2 日 · AI 自动解决 · 已是教程&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;dc-chip good&quot;&gt;&lt;i data-lucide=&quot;check&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;已解决&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&#x27;,
+      rem:&#x27;&lt;div class=&quot;dc-card dc-rem-row&quot;&gt;&lt;div style=&quot;flex:1;min-width:150px&quot;&gt;&lt;b&gt;吃药提醒&lt;/b&gt;&lt;br&gt;&lt;span class=&quot;dc-sub&quot;&gt;每天 08:00&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;dc-chip warn&quot;&gt;待办&lt;/span&gt;&lt;button type=&quot;button&quot; class=&quot;dc-btn ghost&quot; data-del&gt;删除&lt;/button&gt;&lt;/div&gt;&lt;div class=&quot;dc-card dc-rem-row&quot;&gt;&lt;div style=&quot;flex:1;min-width:150px&quot;&gt;&lt;b&gt;养老金认证&lt;/b&gt;&lt;br&gt;&lt;span class=&quot;dc-sub&quot;&gt;15 号 10:00 · 外公已点&quot;办好了&quot;&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;dc-chip good&quot;&gt;&lt;i data-lucide=&quot;check&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;已办&lt;/span&gt;&lt;button type=&quot;button&quot; class=&quot;dc-btn ghost&quot; data-del&gt;删除&lt;/button&gt;&lt;/div&gt;&lt;div class=&quot;dc-card dc-rem-row&quot;&gt;&lt;div style=&quot;flex:1;min-width:150px&quot;&gt;&lt;b&gt;复诊&lt;/b&gt;&lt;br&gt;&lt;span class=&quot;dc-sub&quot;&gt;下周三 14:00&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;dc-chip mut&quot;&gt;未到时间&lt;/span&gt;&lt;button type=&quot;button&quot; class=&quot;dc-btn ghost&quot; data-del&gt;删除&lt;/button&gt;&lt;/div&gt;&#x27;,
+      hist:&#x27;&lt;div class=&quot;dc-card dc-rem-row&quot;&gt;&lt;div style=&quot;flex:1;min-width:150px&quot;&gt;&lt;b&gt;转发文章到家族群&lt;/b&gt;&lt;br&gt;&lt;span class=&quot;dc-sub&quot;&gt;3 步 · 用 2 次&lt;/span&gt;&lt;/div&gt;&lt;button type=&quot;button&quot; class=&quot;dc-btn&quot; data-hist=&quot;1&quot;&gt;做成教程&lt;/button&gt;&lt;/div&gt;&lt;div class=&quot;dc-card dc-rem-row&quot;&gt;&lt;div style=&quot;flex:1;min-width:150px&quot;&gt;&lt;b&gt;找不到相册&lt;/b&gt;&lt;br&gt;&lt;span class=&quot;dc-sub&quot;&gt;2 步 · 用 3 次&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;dc-chip good&quot;&gt;&lt;i data-lucide=&quot;star&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;已是教程&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;dc-card dc-rem-row&quot;&gt;&lt;div style=&quot;flex:1;min-width:150px&quot;&gt;&lt;b&gt;清理手机内存&lt;/b&gt;&lt;br&gt;&lt;span class=&quot;dc-sub&quot;&gt;4 步 · 用 1 次&lt;/span&gt;&lt;/div&gt;&lt;button type=&quot;button&quot; class=&quot;dc-btn&quot; data-hist=&quot;2&quot;&gt;做成教程&lt;/button&gt;&lt;/div&gt;&#x27;,
+      fam:&#x27;&lt;b&gt;外公&lt;/b&gt;&lt;br&gt;&lt;span class=&quot;dc-sub&quot;&gt;关系：外公 · 还绑定了：女儿（你妈妈）、外孙（你）&lt;/span&gt;&#x27;
+    },
+    &#x27;外婆&#x27;:{
+      online:false,
+      inbox:emptyInbox,
+      rem:&#x27;&lt;div class=&quot;dc-card dc-rem-row&quot;&gt;&lt;div style=&quot;flex:1;min-width:150px&quot;&gt;&lt;b&gt;复诊&lt;/b&gt;&lt;br&gt;&lt;span class=&quot;dc-sub&quot;&gt;下周三 14:00&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;dc-chip mut&quot;&gt;未到时间&lt;/span&gt;&lt;button type=&quot;button&quot; class=&quot;dc-btn ghost&quot; data-del&gt;删除&lt;/button&gt;&lt;/div&gt;&#x27;,
+      hist:emptyHist,
+      fam:&#x27;&lt;b&gt;外婆&lt;/b&gt;&lt;br&gt;&lt;span class=&quot;dc-sub&quot;&gt;关系：外婆 · 还绑定了：女儿（你妈妈）&lt;/span&gt;&#x27;
+    },
+    &#x27;奶奶&#x27;:{
+      online:true,
+      inbox:emptyInbox,
+      rem:emptyRem,
+      hist:emptyHist,
+      fam:&#x27;&lt;b&gt;奶奶&lt;/b&gt;&lt;br&gt;&lt;span class=&quot;dc-sub&quot;&gt;关系：奶奶 · 还绑定了：儿子（你爸爸）、你&lt;/span&gt;&#x27;
+    }
+  };
+  function show(name){
+    screens.forEach(function(s){s.classList.toggle(&#x27;active&#x27;,s.getAttribute(&#x27;data-cs&#x27;)===name);});
+    nav2.forEach(function(b){b.classList.toggle(&#x27;on&#x27;,b.getAttribute(&#x27;data-goto&#x27;)===name);});
+    tabs.forEach(function(b){b.classList.toggle(&#x27;on&#x27;,b.getAttribute(&#x27;data-tab&#x27;)===name);});
+    root.querySelector(&#x27;#dc-tabs&#x27;).style.display=roleSet?&#x27;flex&#x27;:&#x27;none&#x27;;
+  }
+  function renderElder(name){
+    cur=name;
+    root.querySelectorAll(&#x27;.dc-elder&#x27;).forEach(function(b){b.classList.toggle(&#x27;on&#x27;,b.getAttribute(&#x27;data-elder&#x27;)===name);});
+    var d=data[name];
+    root.querySelector(&#x27;#dc-inbox-title&#x27;).textContent=name+&#x27;的收件箱&#x27;;
+    root.querySelector(&#x27;#dc-inbox-body&#x27;).innerHTML=d.inbox;
+    root.querySelector(&#x27;#dc-rem-list&#x27;).innerHTML=d.rem;
+    root.querySelector(&#x27;#dc-hist-body&#x27;).innerHTML=d.hist;
+    root.querySelector(&#x27;#dc-inbox-badge&#x27;).textContent=name===&#x27;外公&#x27;?&#x27;1&#x27;:&#x27;0&#x27;;
+    bindInbox();
+    bindRows();
+  }
+  function bindInbox(){
+    var c1=root.querySelector(&#x27;#dc-card-1&#x27;);
+    if(c1){c1.onclick=function(e){if(e.target.closest(&#x27;button&#x27;))return;show(&#x27;detail&#x27;);};}
+    var d1=root.querySelector(&#x27;#dc-detail1&#x27;);
+    if(d1){d1.onclick=function(){show(&#x27;detail&#x27;);};}
+    var h1=root.querySelector(&#x27;#dc-help1&#x27;);
+    if(h1){h1.onclick=function(){show(&#x27;call&#x27;);};}
+  }
+  function bindRows(){
+    root.querySelectorAll(&#x27;[data-del]&#x27;).forEach(function(b){
+      b.onclick=function(){b.closest(&#x27;.dc-card&#x27;).remove();};
+    });
+    root.querySelectorAll(&#x27;[data-hist]&#x27;).forEach(function(b){
+      b.onclick=function(){
+        var card=b.closest(&#x27;.dc-card&#x27;);
+        card.querySelector(&#x27;button&#x27;).outerHTML=&#x27;&lt;span class=&quot;dc-chip good&quot;&gt;&lt;i data-lucide=&quot;star&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;已是教程&lt;/span&gt;&#x27;;
+        refreshIcons();
+      };
+    });
+  }
+  function renderFamily(){
+    var html=&#x27;&#x27;;
+    Object.keys(data).forEach(function(k){
+      var d=data[k];
+      html+=&#x27;&lt;div class=&quot;dc-card dc-rem-row&quot;&gt;&lt;div style=&quot;flex:1;min-width:150px&quot;&gt;&#x27;+d.fam+&#x27;&lt;/div&gt;&lt;span class=&quot;dc-chip &#x27;+(d.online?&#x27;good&#x27;:&#x27;mut&#x27;)+&#x27;&quot;&gt;&#x27;+(d.online?&#x27;在线&#x27;:&#x27;离线&#x27;)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;;
+    });
+    root.querySelector(&#x27;#dc-family-list&#x27;).innerHTML=html;
+  }
+  function addElderBtn(name){
+    var b=document.createElement(&#x27;button&#x27;);
+    b.type=&#x27;button&#x27;;
+    b.className=&#x27;dc-elder&#x27;;
+    b.setAttribute(&#x27;data-elder&#x27;,name);
+    b.innerHTML=&#x27;&lt;span class=&quot;dc-dot off&quot;&gt;&lt;/span&gt;&#x27;+name;
+    b.addEventListener(&#x27;click&#x27;,function(){renderElder(name);show(&#x27;inbox&#x27;);});
+    root.querySelector(&#x27;#dc-elders&#x27;).appendChild(b);
+  }
+  nav2.forEach(function(b){b.addEventListener(&#x27;click&#x27;,function(){if(b.getAttribute(&#x27;data-goto&#x27;)===&#x27;role&#x27;||b.getAttribute(&#x27;data-goto&#x27;)===&#x27;login&#x27;){roleSet=false;}show(b.getAttribute(&#x27;data-goto&#x27;));});});
+  tabs.forEach(function(b){b.addEventListener(&#x27;click&#x27;,function(){show(b.getAttribute(&#x27;data-tab&#x27;));});});
+  root.querySelectorAll(&#x27;.dc-elder&#x27;).forEach(function(b){
+    b.addEventListener(&#x27;click&#x27;,function(){renderElder(b.getAttribute(&#x27;data-elder&#x27;));show(&#x27;inbox&#x27;);});
+  });
+  root.querySelector(&#x27;#dc-role-child&#x27;).addEventListener(&#x27;click&#x27;,function(){roleSet=true;show(&#x27;inbox&#x27;);});
+  root.querySelector(&#x27;#dc-role-elder&#x27;).addEventListener(&#x27;click&#x27;,function(){roleSet=true;show(&#x27;inbox&#x27;);});
+  root.querySelector(&#x27;#dc-login-go&#x27;).addEventListener(&#x27;click&#x27;,function(){show(&#x27;role&#x27;);});
+  root.querySelector(&#x27;#dc-login-wechat&#x27;).addEventListener(&#x27;click&#x27;,function(){show(&#x27;role&#x27;);});
+  root.querySelector(&#x27;#dc-use-elder&#x27;).addEventListener(&#x27;click&#x27;,function(){
+    var b=root.querySelector(&#x27;#dc-use-elder&#x27;);
+    b.textContent=&#x27;已切换（演示）&#x27;;
+    b.disabled=true;
+  });
+  root.querySelector(&#x27;#dc-back-inbox&#x27;).addEventListener(&#x27;click&#x27;,function(){show(&#x27;inbox&#x27;);});
+  root.querySelector(&#x27;#dc-start-call&#x27;).addEventListener(&#x27;click&#x27;,function(){show(&#x27;call&#x27;);});
+  root.querySelector(&#x27;#dc-mark-done&#x27;).addEventListener(&#x27;click&#x27;,function(){
+    var c=root.querySelector(&#x27;#dc-detail-chip&#x27;);
+    c.className=&#x27;dc-chip good&#x27;;
+    c.innerHTML=&#x27;&lt;i data-lucide=&quot;check&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;已解决&#x27;;
+    root.querySelector(&#x27;#dc-inbox-badge&#x27;).textContent=&#x27;0&#x27;;
+    refreshIcons();
+  });
+  root.querySelector(&#x27;#dc-send-reply&#x27;).addEventListener(&#x27;click&#x27;,function(){showToast(root.querySelector(&#x27;#dc-reply&#x27;).value||&#x27;外公，慢慢来&#x27;);});
+  function showToast(msg){
+    var t=root.querySelector(&#x27;#dc-toast&#x27;);
+    t.textContent=&#x27;你发给了外公：&#x27;+msg;
+    t.style.display=&#x27;block&#x27;;
+    setTimeout(function(){t.style.display=&#x27;none&#x27;;},2400);
+  }
+  root.querySelectorAll(&#x27;[data-send]&#x27;).forEach(function(b){
+    b.addEventListener(&#x27;click&#x27;,function(){
+      var v=b.getAttribute(&#x27;data-send&#x27;);
+      showToast(v);
+      root.querySelector(&#x27;#dc-ov-text&#x27;).textContent=v;
+    });
+  });
+  root.querySelector(&#x27;#dc-demo-ok&#x27;).addEventListener(&#x27;click&#x27;,function(){
+    root.querySelector(&#x27;#dc-ov-text&#x27;).textContent=&#x27;✓ 菜单打开了，点「分享给朋友」&#x27;;
+    showToast(&#x27;AI 已确认：菜单打开了&#x27;);
+  });
+  root.querySelector(&#x27;#dc-demo-stuck&#x27;).addEventListener(&#x27;click&#x27;,function(){showToast(&#x27;外公说：卡住了，请讲慢一点&#x27;);});
+  root.querySelector(&#x27;#dc-end-call&#x27;).addEventListener(&#x27;click&#x27;,function(){
+    root.querySelector(&#x27;#dc-call-state&#x27;).textContent=&#x27;通话已结束 · 外公完成第 1 步&#x27;;
+    show(&#x27;detail&#x27;);
+  });
+  root.querySelector(&#x27;#dc-mute&#x27;).addEventListener(&#x27;click&#x27;,function(){
+    var b=root.querySelector(&#x27;#dc-mute&#x27;);
+    b.innerHTML=b.innerHTML.indexOf(&#x27;静音&#x27;)&gt;-1?&#x27;&lt;i data-lucide=&quot;mic-off&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;已静音&#x27;:&#x27;&lt;i data-lucide=&quot;mic&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;静音&#x27;;
+  });
+  root.querySelector(&#x27;#dc-add-toggle&#x27;).addEventListener(&#x27;click&#x27;,function(){
+    var f=root.querySelector(&#x27;#dc-add-form&#x27;);
+    f.style.display=f.style.display===&#x27;none&#x27;?&#x27;flex&#x27;:&#x27;none&#x27;;
+  });
+  root.querySelector(&#x27;#dc-add-save&#x27;).addEventListener(&#x27;click&#x27;,function(){
+    var t=root.querySelector(&#x27;#dc-new-text&#x27;).value||&#x27;新提醒&#x27;;
+    var tm=root.querySelector(&#x27;#dc-new-time&#x27;).value||&#x27;每天 08:00&#x27;;
+    var row=document.createElement(&#x27;div&#x27;);
+    row.className=&#x27;dc-card dc-rem-row&#x27;;
+    row.innerHTML=&#x27;&lt;div style=&quot;flex:1;min-width:150px&quot;&gt;&lt;b&gt;&#x27;+t+&#x27;&lt;/b&gt;&lt;br&gt;&lt;span class=&quot;dc-sub&quot;&gt;&#x27;+tm+&#x27;&lt;/span&gt;&lt;/div&gt;&lt;span class=&quot;dc-chip warn&quot;&gt;待办&lt;/span&gt;&lt;button type=&quot;button&quot; class=&quot;dc-btn ghost&quot;&gt;删除&lt;/button&gt;&#x27;;
+    row.querySelector(&#x27;button&#x27;).addEventListener(&#x27;click&#x27;,function(){row.remove();});
+    root.querySelector(&#x27;#dc-rem-list&#x27;).appendChild(row);
+    refreshIcons();
+    root.querySelector(&#x27;#dc-add-form&#x27;).style.display=&#x27;none&#x27;;
+    root.querySelector(&#x27;#dc-new-text&#x27;).value=&#x27;&#x27;;
+    root.querySelector(&#x27;#dc-new-time&#x27;).value=&#x27;&#x27;;
+  });
+  root.querySelector(&#x27;#dc-add-elder&#x27;).addEventListener(&#x27;click&#x27;,function(){
+    var f=root.querySelector(&#x27;#dc-invite-form&#x27;);
+    f.style.display=f.style.display===&#x27;none&#x27;?&#x27;flex&#x27;:&#x27;none&#x27;;
+  });
+  root.querySelector(&#x27;#dc-gen-code&#x27;).addEventListener(&#x27;click&#x27;,function(){
+    root.querySelector(&#x27;#dc-code-wrap&#x27;).style.display=&#x27;flex&#x27;;
+  });
+  root.querySelector(&#x27;#dc-bind-done&#x27;).addEventListener(&#x27;click&#x27;,function(){
+    var name=root.querySelector(&#x27;#dc-new-elder-name&#x27;).value||&#x27;爷爷&#x27;;
+    if(!data[name]){
+      data[name]={online:false,inbox:emptyInbox,rem:emptyRem,hist:emptyHist,fam:&#x27;&lt;b&gt;&#x27;+name+&#x27;&lt;/b&gt;&lt;br&gt;&lt;span class=&quot;dc-sub&quot;&gt;关系：&#x27;+name+&#x27; · 还绑定了：你&lt;/span&gt;&#x27;};
+      addElderBtn(name);
+    }
+    renderFamily();
+    root.querySelector(&#x27;#dc-invite-form&#x27;).style.display=&#x27;none&#x27;;
+    root.querySelector(&#x27;#dc-new-elder-name&#x27;).value=&#x27;&#x27;;
+    root.querySelector(&#x27;#dc-code-wrap&#x27;).style.display=&#x27;none&#x27;;
+  });
+  renderFamily();
+})();
+&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;script src=&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set([&quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+
+  const getTrigger = (target) =&gt;
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest(&quot;[data-tooltip]&quot;)
+      : null;
+  const containsTarget = (trigger, target) =&gt;
+    target?.nodeType != null &amp;&amp; trigger.contains(target);
+  const getContent = (trigger) =&gt;
+    trigger.getAttribute(&quot;data-tooltip&quot;)?.trim() ?? &quot;&quot;;
+  const getPlacement = (trigger) =&gt; {
+    const placement = trigger.getAttribute(&quot;data-tooltip-placement&quot;);
+    return tooltipPlacements.has(placement) ? placement : &quot;top&quot;;
+  };
+  const getTooltip = () =&gt; {
+    if (tooltip == null) {
+      tooltip = document.createElement(&quot;div&quot;);
+      tooltip.id = tooltipId;
+      tooltip.className = &quot;tooltip&quot;;
+      tooltip.setAttribute(&quot;role&quot;, &quot;tooltip&quot;);
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) =&gt; {
+    const ids = new Set(
+      (trigger.getAttribute(&quot;aria-describedby&quot;) ?? &quot;&quot;)
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute(&quot;aria-describedby&quot;);
+    } else {
+      trigger.setAttribute(&quot;aria-describedby&quot;, [...ids].join(&quot; &quot;));
+    }
+  };
+  const clearOpenTimeout = () =&gt; {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) =&gt; {
+    clearOpenTimeout();
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) =&gt; {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-width&quot;,
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-height&quot;,
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: &quot;fixed&quot;,
+    })
+      .then(({ x, y }) =&gt; {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = &quot;visible&quot;;
+      })
+      .catch(() =&gt; {
+        if (activeTrigger === trigger &amp;&amp; request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) =&gt; {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = &quot;hidden&quot;;
+    floating.style.transform = &quot;translate(0, 0)&quot;;
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () =&gt; {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) =&gt; {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() &lt; skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() =&gt; {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) =&gt; {
+    if (event.pointerType === &quot;touch&quot;) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handleLeave = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(&quot;:focus-visible&quot;)) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) =&gt; {
+    if (event.key === &quot;Escape&quot;) {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () =&gt; {
+    closeTooltip(false);
+    document.removeEventListener(&quot;pointerover&quot;, handlePointerOpen);
+    document.removeEventListener(&quot;pointerout&quot;, handleLeave);
+    document.removeEventListener(&quot;focusin&quot;, handleFocusIn);
+    document.removeEventListener(&quot;focusout&quot;, handleLeave);
+    document.removeEventListener(&quot;keydown&quot;, handleKeyDown);
+    document.removeEventListener(&quot;contextmenu&quot;, handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener(&quot;pointerover&quot;, handlePointerOpen);
+  document.addEventListener(&quot;pointerout&quot;, handleLeave);
+  document.addEventListener(&quot;focusin&quot;, handleFocusIn);
+  document.addEventListener(&quot;focusout&quot;, handleLeave);
+  document.addEventListener(&quot;keydown&quot;, handleKeyDown);
+  document.addEventListener(&quot;contextmenu&quot;, handleContextMenu);
+  window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-lucide&quot; async src=&quot;https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const initialize = () =&gt; {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById(&quot;codex-visualization-lucide&quot;)
+    ?.addEventListener(&quot;load&quot;, initialize, { once: true });
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+</body>
+</html>
