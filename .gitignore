@@ -12,3 +12,8 @@ design-style-reference-SKILL.md
 read-image-SKILL.md
 .codex/
 .agents/
+
+# 本地演示素材与大体积产物
+.pptx_build/
+video_demo/
+演示素材/

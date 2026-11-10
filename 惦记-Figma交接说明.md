@@ -13,7 +13,7 @@
 
 ## 方式二：截图对照手动重绘
 
-1. 打开 [惦记App-整合原型.html](/Users/lwl/Documents/ChatGPT/Eazo/惦记App-整合原型.html)，点底部"设计稿总览（#board）"，滚动截图每个界面（或用系统截屏）；
+1. 打开 [惦记App-整合原型.html](/Users/lwl/Documents/ChatGPT/惦记/惦记App-整合原型.html)，点底部"设计稿总览（#board）"，滚动截图每个界面（或用系统截屏）；
 2. 在 Figma 建 21 个 390×844 的帧（手机稿尺寸）；
 3. 按下方"设计令牌"重建颜色、字号、圆角，截图放旁边对照。
 
